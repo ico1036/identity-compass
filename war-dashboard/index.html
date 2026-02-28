@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRISIS DASHBOARD</title>
+  <style>
+    :root {
+      --bg: #050608;
+      --panel: #0d1014;
+      --line: #232b35;
+      --red: #ff3b3b;
+      --text: #e8eef7;
+      --muted: #93a1b3;
+      --green: #18d26e;
+      --amber: #ffb02e;
+    }
+    body { margin:0; background:radial-gradient(circle at top, #111 0, var(--bg) 60%); color:var(--text); font-family: Inter, system-ui, sans-serif; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 16px; }
+    .header { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--line); background:#0a0c10; border-radius:12px; padding:12px 16px; }
+    .title { color: var(--red); font-size: 28px; font-weight: 800; letter-spacing: .5px; }
+    .clock { font-size: 24px; font-weight: 700; }
+    .grid { margin-top:12px; display:grid; grid-template-columns: 2fr 1fr; gap:12px; }
+    .panel { border:1px solid var(--line); background:var(--panel); border-radius:12px; padding:12px; }
+    .panel h3 { margin:0 0 10px; font-size:15px; color:#ff8f8f; }
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .item { border:1px solid #202834; border-left:4px solid var(--red); border-radius:8px; padding:10px; background:#0b0f14; }
+    .item a { color:var(--text); text-decoration:none; font-weight:700; }
+    .meta { color:var(--muted); font-size:12px; margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; }
+    .score { padding:2px 6px; border-radius:20px; border:1px solid #3c4655; font-weight:700; }
+    .score.high { color:var(--green); border-color: #1f7a4b; }
+    .score.mid { color:var(--amber); border-color: #8b6421; }
+    .score.low { color:#ff6f6f; border-color:#7d2f2f; }
+    .ticker { margin-top:12px; border:1px solid var(--line); background:#090c11; border-radius:12px; overflow:hidden; white-space:nowrap; }
+    .ticker-track { display:inline-block; padding:10px 0; animation: scroll 35s linear infinite; }
+    .tick { margin:0 24px; color:#ff9e9e; font-weight:600; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .small { font-size:12px; color:var(--muted); }
+    ul { margin:0; padding-left:16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="title">CRISIS: US-IRAN LIVE DASHBOARD</div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h3>실시간 헤드라인 (신뢰도/연관도 가중)</h3>
+        <div class="cards" id="news"></div>
+      </div>
+      <div class="panel">
+        <h3>소스 & 상태</h3>
+        <div id="status" class="small">loading...</div>
+        <hr style="border-color:#1d2630; margin:10px 0;">
+        <h3>중요 참고</h3>
+        <ul class="small">
+          <li>"모든 매체" 100% 커버는 불가 (API/접근권한 제한)</li>
+          <li>Reuters/AP 같은 wire를 높은 신뢰도로 우선 반영</li>
+          <li>검색형 소스(Google News)는 교차검증 용도</li>
+          <li>X(Twitter)는 API 키/계정 연동 시 확장 가능</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ticker">
+      <div class="ticker-track" id="ticker"></div>
+    </div>
+  </div>
+
+  <script>
+    const newsEl = document.getElementById('news');
+    const statusEl = document.getElementById('status');
+    const tickerEl = document.getElementById('ticker');
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString('ko-KR', { hour12: false });
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    function scoreClass(v) {
+      if (v >= 0.86) return 'high';
+      if (v >= 0.72) return 'mid';
+      return 'low';
+    }
+
+    function kstTime(iso) {
+      if (!iso) return '-';
+      const d = new Date(iso);
+      return d.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    }
+
+    async function refresh() {
+      try {
+        const res = await fetch('/api/feed?_=' + Date.now());
+        const data = await res.json();
+
+        newsEl.innerHTML = data.rows.slice(0, 12).map(r => `
+          <div class="item">
+            <a href="${r.url}" target="_blank" rel="noreferrer">${r.title}</a>
+            <div class="meta">
+              <span>${r.source}</span>
+              <span>${kstTime(r.publishedAt)}</span>
+              <span class="score ${scoreClass(r.score)}">score ${(r.score*100).toFixed(0)}</span>
+              <span>trust ${(r.trust*100).toFixed(0)}</span>
+              <span>rel ${(r.relevance*100).toFixed(0)}</span>
+            </div>
+          </div>
+        `).join('');
+
+        statusEl.innerHTML = `업데이트: ${kstTime(data.generatedAt)}<br>수집 기사: ${data.count}건<br>에러: ${data.errors.length}개` +
+          (data.errors.length ? `<br><br>${data.errors.map(e => `- ${e.source}: ${e.error}`).join('<br>')}` : '');
+
+        const ticks = data.rows.slice(0, 20).map(r => `<span class="tick">● ${r.title}</span>`).join('');
+        tickerEl.innerHTML = ticks + ticks;
+      } catch (e) {
+        statusEl.textContent = 'fetch 실패: ' + e.message;
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 120000);
+  </script>
+</body>
+</html>
