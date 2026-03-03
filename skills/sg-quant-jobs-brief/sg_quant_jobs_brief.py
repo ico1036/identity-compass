@@ -183,6 +183,34 @@ def fresh_enough(date_posted: str, max_age_days: int = 60) -> bool:
         return False
 
 
+
+
+def is_developer_title(title: str) -> bool:
+    return "developer" in (title or "").lower()
+
+
+def sort_by_recency(items: List[JobItem]) -> List[JobItem]:
+    def k(it: JobItem):
+        try:
+            return dt.date.fromisoformat(it.date_posted or "1970-01-01")
+        except Exception:
+            return dt.date(1970,1,1)
+    return sorted(items, key=k, reverse=True)
+
+
+def render_chat_list(items: List[JobItem]) -> str:
+    lines=[]
+    for i,it in enumerate(items,1):
+        lines += [
+            f"{i}) {it.title} — {it.company}",
+            f"- {it.location} / {it.date_posted}",
+            f"- 요약: {it.title} 포지션",
+            f"- 특이: {'크립토/디지털자산' if 'crypto' in (it.title or '').lower() else '정량 리서치/트레이딩 직무'}",
+            f"- 링크: {it.link}",
+            "",
+        ]
+    return "\n".join(lines).strip()+"\n"
+
 def score_item(item: JobItem) -> float:
     score = 0.0
     if item.title:
@@ -535,6 +563,10 @@ def main() -> int:
     ap.add_argument("--headful", action="store_true", help="Run browser visibly (effective with --use-browser)")
     ap.add_argument("--min-results", type=int, default=0, help="Require at least this many final results before early stop")
     ap.add_argument("--max-rounds", type=int, default=3, help="Max retry rounds for collection + QA")
+    ap.add_argument("--exclude-developer", action="store_true", help="Exclude titles containing developer")
+    ap.add_argument("--top", type=int, default=0, help="Return top N by recency after filtering (0=all)")
+    ap.add_argument("--chat-format", action="store_true", help="Emit chat-ready list format")
+    ap.add_argument("--chat-output", default="", help="Optional path to write chat-ready output")
     args = ap.parse_args()
 
     output_path = Path(args.output)
@@ -577,6 +609,12 @@ def main() -> int:
         else:
             all_logs.append("Stop condition not met; max rounds reached.")
 
+    final_items = sort_by_recency(final_items)
+    if args.exclude_developer:
+        final_items = [i for i in final_items if not is_developer_title(i.title)]
+    if args.top and args.top > 0:
+        final_items = final_items[:args.top]
+
     md = render_markdown(final_items, all_logs, all_errors, min_results=max(0, args.min_results), rounds_done=rounds_done)
     output_path.write_text(md, encoding="utf-8")
 
@@ -596,6 +634,16 @@ def main() -> int:
 
     print(f"Wrote markdown: {output_path}")
     print(f"Wrote json: {json_path}")
+    if args.chat_format:
+        chat = render_chat_list(final_items)
+        if args.chat_output:
+            Path(args.chat_output).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.chat_output).write_text(chat, encoding="utf-8")
+            print(f"Wrote chat output: {args.chat_output}")
+        print("---CHAT_FORMAT_START---")
+        print(chat)
+        print("---CHAT_FORMAT_END---")
+
     print(f"Final result count: {len(final_items)}")
     return 0
 

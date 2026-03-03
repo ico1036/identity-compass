@@ -1,3 +1,8 @@
+---
+name: sg-quant-jobs-brief
+description: Collect and summarize Singapore quant hiring roles using LinkedIn and Glassdoor only. Use for quant researcher/trader job scans, daily briefs, and shortlist generation with strict source/location filtering and chat-ready output.
+---
+
 # sg-quant-jobs-brief
 
 Nightly briefing skill for Singapore quant job openings.
@@ -101,4 +106,17 @@ Run daily at 02:10 AM:
 
 ```cron
 10 2 * * * cd /Users/ryan/.openclaw/workspace && /usr/bin/python3 skills/sg-quant-jobs-brief/sg_quant_jobs_brief.py --output skills/sg-quant-jobs-brief/outputs/brief-$(date +\%F).md --json-output skills/sg-quant-jobs-brief/outputs/brief-$(date +\%F).json --max-pages 3 --max-rounds 4 --min-results 5 --use-browser >> skills/sg-quant-jobs-brief/outputs/cron.log 2>&1
+```
+
+
+## Chat-ready output (new)
+Use these options to print Telegram-ready lines directly:
+- `--exclude-developer` : remove titles containing developer
+- `--top 25` : keep top 25 by recency
+- `--chat-format` : print chat-ready bullet list
+- `--chat-output <path>` : also write chat-ready text file
+
+Example:
+```bash
+python3 skills/sg-quant-jobs-brief/sg_quant_jobs_brief.py   --output skills/sg-quant-jobs-brief/outputs/brief-chat.md   --json-output skills/sg-quant-jobs-brief/outputs/brief-chat.json   --max-pages 3 --max-rounds 4 --min-results 5 --use-browser   --exclude-developer --top 25 --chat-format   --chat-output skills/sg-quant-jobs-brief/outputs/brief-chat.txt
 ```
