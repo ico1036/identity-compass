@@ -120,3 +120,16 @@ Example:
 ```bash
 python3 skills/sg-quant-jobs-brief/sg_quant_jobs_brief.py   --output skills/sg-quant-jobs-brief/outputs/brief-chat.md   --json-output skills/sg-quant-jobs-brief/outputs/brief-chat.json   --max-pages 3 --max-rounds 4 --min-results 5 --use-browser   --exclude-developer --top 25 --chat-format   --chat-output skills/sg-quant-jobs-brief/outputs/brief-chat.txt
 ```
+
+
+## 특이사항 작성 규칙 (업데이트)
+채팅 출력의 `특이`는 공고마다 아래 축으로 **구체적으로** 작성:
+- 자산군/도메인: Equity, Rates/FX, Fixed Income, Crypto/DeFi
+- 시니어리티: Graduate/Intern/Junior, AVP/VP/Senior/Principal
+- 조직 성격: Execution, Trading Team, Sales Trader, RV Analyst
+- 채용 형태: 에이전시/중개 가능성 여부(원청 확인 필요 표기)
+- 예외/주의: 퀀트 트레이딩 타깃에서 벗어나는 UX/비핵심 공고 표시
+
+금지:
+- 모든 공고에 동일한 문구 반복 (`정량 리서치/트레이딩 직무` 단일 반복 금지)
+- 근거 없는 단정

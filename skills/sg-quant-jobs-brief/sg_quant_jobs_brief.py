@@ -198,6 +198,45 @@ def sort_by_recency(items: List[JobItem]) -> List[JobItem]:
     return sorted(items, key=k, reverse=True)
 
 
+
+
+def infer_notable_points(item: JobItem) -> str:
+    t=(item.title or '').lower()
+    c=(item.company or '').lower()
+    notes=[]
+
+    # asset/domain
+    if any(k in t for k in ['fx','rates','fixed income','equity','crypto','defi']):
+        if 'fx' in t or 'rates' in t: notes.append('자산군: Rates/FX')
+        if 'fixed income' in t: notes.append('자산군: Fixed Income')
+        if 'equity' in t: notes.append('자산군: Equity')
+        if 'crypto' in t or 'defi' in t: notes.append('도메인: Crypto/디지털자산')
+
+    # seniority
+    if any(k in t for k in ['graduate','intern','junior']):
+        notes.append('시니어리티: 주니어 트랙')
+    if any(k in t for k in ['avp','vp','senior','principal','head']):
+        notes.append('시니어리티: 시니어/리드급')
+
+    # team/function
+    if any(k in t for k in ['execution','trading team','sales trader','rv analyst']):
+        if 'execution' in t: notes.append('조직성격: Execution 비중')
+        if 'trading team' in t: notes.append('조직성격: Trading Team 명시')
+        if 'sales trader' in t: notes.append('직무성격: Sales Trading 인접')
+        if 'rv analyst' in t: notes.append('직무성격: RV Analyst 혼합')
+
+    # hiring type
+    if any(k in c for k in ['mccade','radley','fionics','tardis','hyphen connect']):
+        notes.append('채용형태: 에이전시/중개 가능성(원청 확인 필요)')
+
+    # outlier exclusion
+    if 'ux researcher' in t:
+        notes.append('주의: 퀀트 트레이딩 직무와 거리 있음')
+
+    if not notes:
+        notes.append('일반 퀀트 리서치/트레이딩 포지션')
+    return ' | '.join(dict.fromkeys(notes))
+
 def render_chat_list(items: List[JobItem]) -> str:
     lines=[]
     for i,it in enumerate(items,1):
@@ -205,7 +244,7 @@ def render_chat_list(items: List[JobItem]) -> str:
             f"{i}) {it.title} — {it.company}",
             f"- {it.location} / {it.date_posted}",
             f"- 요약: {it.title} 포지션",
-            f"- 특이: {'크립토/디지털자산' if 'crypto' in (it.title or '').lower() else '정량 리서치/트레이딩 직무'}",
+            f"- 특이: {infer_notable_points(it)}",
             f"- 링크: {it.link}",
             "",
         ]
