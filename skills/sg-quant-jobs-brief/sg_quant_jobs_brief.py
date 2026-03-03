@@ -33,6 +33,9 @@ ROLE_PATTERNS = [
     r"\balgo(?:rithmic)?\s+trader?\b",
     r"\bsystematic\s+trader?\b",
     r"\bquant\s+analyst\b",
+    r"\bqr\b",
+    r"\bqt\b",
+    r"\bquant\b",
 ]
 
 # Rotated per request/round to reduce static fingerprinting.
@@ -104,6 +107,60 @@ def parse_relative_date(raw: str) -> str:
     return (now - dt.timedelta(days=delta_days)).isoformat()
 
 
+
+
+def parse_result_count_text(body: str, source_hint: str) -> Optional[int]:
+    text = clean_text(body)
+    patterns = []
+    if source_hint == "LinkedIn":
+        patterns = [
+            r"([\d,]+)\s+results",
+            r"showing\s+[\d,]+\s*[-to]+\s*[\d,]+\s+of\s+([\d,]+)",
+        ]
+    elif source_hint == "Glassdoor":
+        patterns = [
+            r"([\d,]+)\s+jobs",
+            r"([\d,]+)\s+job\s+results",
+        ]
+    else:
+        patterns = [r"([\d,]+)\s+(?:results|jobs)"]
+
+    for pat in patterns:
+        m = re.search(pat, text, flags=re.I)
+        if m:
+            try:
+                return int(m.group(1).replace(",", ""))
+            except Exception:
+                continue
+    return None
+
+
+def infer_context_from_url(url: str) -> Tuple[bool, bool]:
+    u = (url or "").lower()
+    parsed = urllib.parse.urlparse(u)
+    bag = " ".join([parsed.path, parsed.query, parsed.fragment])
+    role_hit = any(k in bag for k in [
+        "quant",
+        "quantitative",
+        "quant+research",
+        "quant+trader",
+        "quant%20research",
+        "quant%20trader",
+        "systematic",
+        "algorithmic",
+    ])
+    sg_hit = any(k in bag for k in ["singapore", "in217", "lockeyword=singapore", "location=singapore"])
+    return role_hit, sg_hit
+
+
+def infer_title_from_anchor_tag(anchor_tag: str, fallback_text: str = "") -> str:
+    for pat in [r'aria-label="([^"]+)"', r'title="([^"]+)"', r'data-job-title="([^"]+)"']:
+        m = re.search(pat, anchor_tag, flags=re.I)
+        if m:
+            t = clean_text(m.group(1))
+            if t:
+                return t
+    return clean_text(fallback_text)
 def is_allowed_url(url: str) -> bool:
     host = urllib.parse.urlparse(url).netloc.lower()
     return any(domain in host for domain in ALLOWED_SOURCES.keys())
@@ -193,13 +250,16 @@ def build_glassdoor_urls(keyword: str, max_pages: int) -> List[str]:
     return urls
 
 
-def extract_jobs_from_html(body: str, source_hint: str) -> List[JobItem]:
+def extract_jobs_from_html(body: str, source_hint: str, page_url: str = "") -> List[JobItem]:
     jobs: List[JobItem] = []
 
-    # Generic anchor extraction; strict filtering will occur in Ralph-loop.
-    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', body, flags=re.S | re.I):
-        href = m.group(1).strip()
-        text = clean_text(m.group(2))
+    page_role_hint, page_loc_hint = infer_context_from_url(page_url)
+
+    # Generic anchor extraction with fallback mode for index pages/card schema drift.
+    for m in re.finditer(r'(<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>)', body, flags=re.S | re.I):
+        raw_anchor = m.group(1)
+        href = (m.group(2) or "").strip()
+        text = clean_text(m.group(3))
         if not href:
             continue
 
@@ -214,26 +274,27 @@ def extract_jobs_from_html(body: str, source_hint: str) -> List[JobItem]:
             continue
 
         low = full.lower()
-        if "linkedin.com" in low and "/jobs/" not in low and "currentjobid" not in low:
-            continue
-        if "glassdoor.com" in low and ("joblisting" not in low and "/job/" not in low and "jobs.htm" in low):
+        looks_listing = False
+        if "linkedin.com" in low:
+            looks_listing = ("/jobs/view" in low) or ("currentjobid=" in low) or ("jobs-guest/jobs/api" in low)
+        if "glassdoor.com" in low:
+            looks_listing = looks_listing or ("joblistingid=" in low) or ("/job-listing/" in low) or ("/partner/joblisting.htm" in low)
+        if not looks_listing:
             continue
 
-        title = text
-        if not role_valid(title):
-            continue
+        title = infer_title_from_anchor_tag(raw_anchor, text)
 
-        # Try finding local card window around anchor for company/location/date signals.
         idx = m.start()
-        card = body[max(0, idx - 500): idx + 1500]
+        card = body[max(0, idx - 700): idx + 2200]
         company = ""
-        location = "Singapore"
+        location = ""
         date_posted = ""
 
         company_matchers = [
             r'base-search-card__subtitle[^>]*>(.*?)</',
             r'employerName[^>]*>(.*?)</',
             r'data-test="employer-name"[^>]*>(.*?)</',
+            r'topcard__org-name-link[^>]*>(.*?)</',
         ]
         for cm in company_matchers:
             cm_m = re.search(cm, card, flags=re.S | re.I)
@@ -245,6 +306,7 @@ def extract_jobs_from_html(body: str, source_hint: str) -> List[JobItem]:
             r'job-search-card__location[^>]*>(.*?)</',
             r'locationName[^>]*>(.*?)</',
             r'data-test="emp-location"[^>]*>(.*?)</',
+            r'jobLocation[^>]*>(.*?)</',
         ]
         for lm in loc_matchers:
             lm_m = re.search(lm, card, flags=re.S | re.I)
@@ -260,8 +322,27 @@ def extract_jobs_from_html(body: str, source_hint: str) -> List[JobItem]:
             if rel_match:
                 date_posted = parse_relative_date(rel_match.group(1))
 
+        role_hit = role_valid(title)
+        loc_hit = location_valid(location)
+        role_hint, loc_hint = infer_context_from_url(full)
+
+        reasons: List[str] = []
+        if not role_hit and (role_hint or page_role_hint):
+            reasons.append("role_inferred_from_url_query")
+            role_hit = True
+        if not loc_hit and (loc_hint or page_loc_hint):
+            location = location or "Singapore (inferred)"
+            reasons.append("location_inferred_from_url_query")
+            loc_hit = True
+
+        if not (role_hit and loc_hit):
+            continue
+
+        if reasons:
+            reasons.append("lower_confidence_fallback")
+
         source = "LinkedIn" if "linkedin.com" in low else "Glassdoor"
-        jobs.append(JobItem(source=source, title=title, company=company, location=location, date_posted=date_posted, link=full, reasons=[]))
+        jobs.append(JobItem(source=source, title=title or "(untitled)", company=company, location=location or "Singapore", date_posted=date_posted, link=full, reasons=reasons))
 
     return jobs
 
@@ -274,8 +355,9 @@ def fetch_requests_path(max_pages: int, logs: List[str], error_reasons: List[str
             body = fetch_url_with_retry(url, logs, error_reasons)
             if not body:
                 continue
-            extracted = extract_jobs_from_html(body, "LinkedIn")
-            logs.append(f"LinkedIn extracted {len(extracted)} from template URL")
+            extracted = extract_jobs_from_html(body, "LinkedIn", page_url=url)
+            rc = parse_result_count_text(body, "LinkedIn")
+            logs.append(f"LinkedIn extracted {len(extracted)} from template URL; index_count={rc if rc is not None else 'n/a'}")
             jobs.extend(extracted)
             time.sleep(random.uniform(0.8, 1.7))
 
@@ -284,8 +366,9 @@ def fetch_requests_path(max_pages: int, logs: List[str], error_reasons: List[str
             body = fetch_url_with_retry(url, logs, error_reasons)
             if not body:
                 continue
-            extracted = extract_jobs_from_html(body, "Glassdoor")
-            logs.append(f"Glassdoor extracted {len(extracted)} from template URL")
+            extracted = extract_jobs_from_html(body, "Glassdoor", page_url=url)
+            rc = parse_result_count_text(body, "Glassdoor")
+            logs.append(f"Glassdoor extracted {len(extracted)} from template URL; index_count={rc if rc is not None else 'n/a'}")
             jobs.extend(extracted)
             time.sleep(random.uniform(0.8, 1.7))
 
@@ -325,8 +408,9 @@ def fetch_browser_path(max_pages: int, headful: bool, logs: List[str], error_rea
                 except Exception:
                     pass
                 body = page.content()
-                extracted = extract_jobs_from_html(body, source)
-                logs.append(f"Browser {source} extracted {len(extracted)} from {url}")
+                extracted = extract_jobs_from_html(body, source, page_url=url)
+                rc = parse_result_count_text(body, source)
+                logs.append(f"Browser {source} extracted {len(extracted)} from {url}; index_count={rc if rc is not None else 'n/a'}")
                 jobs.extend(extracted)
             except Exception as e:
                 msg = f"browser_nav_failed: {url} :: {e}"
@@ -349,28 +433,35 @@ def ralph_loop(items: List[JobItem], max_iter: int = 5) -> Tuple[List[JobItem], 
         checked: List[JobItem] = []
 
         for it in current:
-            it.reasons = []
-            required = all([it.company, it.title, it.link, it.date_posted, it.source])
-            if not required:
-                it.reasons.append("missing_required_fields")
+            it.reasons = (it.reasons or []).copy()
+            hard_reasons: List[str] = []
             if not is_allowed_url(it.link):
-                it.reasons.append("source_not_whitelisted")
+                hard_reasons.append("source_not_whitelisted")
             if not location_valid(it.location):
-                it.reasons.append("invalid_location")
-            if not role_valid(it.title):
-                it.reasons.append("invalid_role")
-            if not fresh_enough(it.date_posted):
-                it.reasons.append("stale_or_unknown_date")
+                hard_reasons.append("invalid_location")
+            if not role_valid(it.title) and "role_inferred_from_url_query" not in it.reasons:
+                hard_reasons.append("invalid_role")
+            if it.date_posted and not fresh_enough(it.date_posted):
+                hard_reasons.append("stale_date")
+
+            if not it.company:
+                it.reasons.append("missing_company_soft")
+            if not it.date_posted:
+                it.reasons.append("missing_date_soft")
 
             it.confidence = score_item(it)
-            if not it.reasons:
+            if "lower_confidence_fallback" in it.reasons:
+                it.confidence = max(0.35, round(it.confidence - 0.15, 2))
+
+            if not hard_reasons:
                 checked.append(it)
             else:
+                it.reasons.extend(hard_reasons)
                 rejected_reasons.append(f"{it.source}|{it.title[:80]} :: {','.join(it.reasons)}")
 
         deduped: Dict[str, JobItem] = {}
         for it in checked:
-            key = f"{it.source}|{it.company.strip().lower()}|{it.title.strip().lower()}"
+            key = f"{it.source}|{it.company.strip().lower()}|{it.title.strip().lower()}|{it.link.strip().lower()}"
             if key not in deduped:
                 deduped[key] = it
 
