@@ -3,6 +3,12 @@
 sg_quant_jobs_brief.py
 Collect and brief Singapore quant jobs (quant researcher / quant trader)
 from LinkedIn and Glassdoor only, then apply Ralph-loop quality checks.
+
+v2 notes:
+- Fast path: requests/urllib scraping with retries and pagination
+- Fallback: Playwright browser collector (optional)
+- Round-based retries with --min-results / --max-rounds stop control
+- Always emits diagnostics and last error reasons in markdown + JSON outputs
 """
 
 from __future__ import annotations
@@ -11,16 +17,15 @@ import argparse
 import datetime as dt
 import html
 import json
+import random
 import re
 import time
 import urllib.parse
 import urllib.request
-import urllib.robotparser
 from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import Dict, List, Optional, Tuple
 
-USER_AGENT = "Mozilla/5.0 (compatible; sg-quant-jobs-brief/1.0; +https://openclaw.local)"
 ALLOWED_SOURCES = {"linkedin.com": "LinkedIn", "glassdoor.com": "Glassdoor"}
 ROLE_PATTERNS = [
     r"\bquant(?:itative)?\s+research(?:er)?\b",
@@ -28,6 +33,27 @@ ROLE_PATTERNS = [
     r"\balgo(?:rithmic)?\s+trader?\b",
     r"\bsystematic\s+trader?\b",
     r"\bquant\s+analyst\b",
+]
+
+# Rotated per request/round to reduce static fingerprinting.
+USER_AGENTS = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15",
+]
+
+REQUEST_TIMEOUT_SEC = 18
+REQUEST_RETRIES = 2
+BASE_BACKOFF_SEC = 1.0
+
+LINKEDIN_KEYWORDS = [
+    "quant researcher",
+    "quant trader",
+]
+GLASSDOOR_KEYWORDS = [
+    "quant researcher",
+    "quant trader",
 ]
 
 
@@ -40,25 +66,11 @@ class JobItem:
     date_posted: str
     link: str
     confidence: float = 0.0
-    reasons: List[str] = None
+    reasons: Optional[List[str]] = None
 
 
-def fetch_url(url: str, timeout: int = 20) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read().decode("utf-8", errors="ignore")
-
-
-def can_fetch(url: str) -> bool:
-    parsed = urllib.parse.urlparse(url)
-    robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
-    rp = urllib.robotparser.RobotFileParser()
-    try:
-        rp.set_url(robots_url)
-        rp.read()
-        return rp.can_fetch(USER_AGENT, url)
-    except Exception:
-        return False
+def pick_user_agent() -> str:
+    return random.choice(USER_AGENTS)
 
 
 def clean_text(s: str) -> str:
@@ -70,129 +82,26 @@ def parse_relative_date(raw: str) -> str:
     raw = (raw or "").strip().lower()
     if not raw:
         return ""
+
     now = dt.datetime.now().date()
-    m = re.search(r"(\d+)\+?\s*(day|hour|week|month|year)", raw)
+    if any(x in raw for x in ["just posted", "today"]):
+        return now.isoformat()
+    if "yesterday" in raw:
+        return (now - dt.timedelta(days=1)).isoformat()
+
+    m = re.search(r"(\d+)\+?\s*(hour|day|week|month|year)", raw)
     if not m:
+        # Try ISO-ish date
         try:
             d = dt.datetime.fromisoformat(raw.replace("Z", "+00:00")).date()
             return d.isoformat()
         except Exception:
             return ""
+
     n = int(m.group(1))
     unit = m.group(2)
-    delta_days = 0
-    if unit == "hour":
-        delta_days = 0
-    elif unit == "day":
-        delta_days = n
-    elif unit == "week":
-        delta_days = n * 7
-    elif unit == "month":
-        delta_days = n * 30
-    elif unit == "year":
-        delta_days = n * 365
+    delta_days = {"hour": 0, "day": n, "week": n * 7, "month": n * 30, "year": n * 365}[unit]
     return (now - dt.timedelta(days=delta_days)).isoformat()
-
-
-def fetch_linkedin_jobs(max_pages: int = 2) -> Tuple[List[JobItem], List[str]]:
-    logs: List[str] = []
-    jobs: List[JobItem] = []
-    base = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
-
-    for kw in ["quant researcher", "quant trader"]:
-        for page in range(max_pages):
-            start = page * 25
-            params = {
-                "keywords": kw,
-                "location": "Singapore",
-                "start": str(start),
-            }
-            url = f"{base}?{urllib.parse.urlencode(params)}"
-            if not can_fetch(url):
-                logs.append(f"LinkedIn blocked by robots for {kw} page {page}.")
-                break
-            try:
-                body = fetch_url(url)
-            except Exception as e:
-                logs.append(f"LinkedIn fetch failed ({kw}, page {page}): {e}")
-                break
-
-            cards = re.findall(r"(<li>.*?</li>)", body, flags=re.S)
-            if not cards:
-                logs.append(f"LinkedIn returned no cards ({kw}, page {page}).")
-                break
-
-            for card in cards:
-                href_m = re.search(r'href="([^"]+)"', card)
-                title_m = re.search(r"job-search-card__title[^>]*>(.*?)</", card, flags=re.S)
-                comp_m = re.search(r"base-search-card__subtitle[^>]*>(.*?)</", card, flags=re.S)
-                loc_m = re.search(r"job-search-card__location[^>]*>(.*?)</", card, flags=re.S)
-                time_m = re.search(r"<time[^>]*datetime=\"([^\"]+)\"", card)
-                time_text_m = re.search(r"<time[^>]*>(.*?)</time>", card, flags=re.S)
-
-                link = (href_m.group(1).strip() if href_m else "")
-                title = clean_text(title_m.group(1) if title_m else "")
-                company = clean_text(comp_m.group(1) if comp_m else "")
-                location = clean_text(loc_m.group(1) if loc_m else "")
-                date_raw = time_m.group(1) if time_m else (clean_text(time_text_m.group(1)) if time_text_m else "")
-                date_posted = parse_relative_date(date_raw)
-
-                jobs.append(JobItem(
-                    source="LinkedIn",
-                    title=title,
-                    company=company,
-                    location=location,
-                    date_posted=date_posted,
-                    link=link,
-                    reasons=[],
-                ))
-            time.sleep(0.4)
-    return jobs, logs
-
-
-def fetch_glassdoor_jobs(max_pages: int = 1) -> Tuple[List[JobItem], List[str]]:
-    logs: List[str] = []
-    jobs: List[JobItem] = []
-    for kw in ["quant researcher", "quant trader"]:
-        query = urllib.parse.quote_plus(kw)
-        url = f"https://www.glassdoor.com/Job/singapore-{query}-jobs-SRCH_IL.0,9_IN217_KO10,26.htm"
-        if not can_fetch(url):
-            logs.append(f"Glassdoor blocked by robots for {kw}.")
-            continue
-        try:
-            body = fetch_url(url)
-        except Exception as e:
-            logs.append(f"Glassdoor fetch failed ({kw}): {e}")
-            continue
-
-        cards = re.findall(r"(href=\"/job-listing/.*?</article>)", body, flags=re.S)
-        if not cards:
-            logs.append(f"Glassdoor returned no parseable cards ({kw}).")
-            continue
-
-        for c in cards[: max_pages * 20]:
-            href_m = re.search(r'href="([^"]+/job-listing/[^"]+)"', c)
-            title_m = re.search(r"jobTitle[^>]*>(.*?)</", c, flags=re.S)
-            comp_m = re.search(r"employerName[^>]*>(.*?)</", c, flags=re.S)
-            loc_m = re.search(r"locationName[^>]*>(.*?)</", c, flags=re.S)
-            date_m = re.search(r"job-age[^>]*>(.*?)</", c, flags=re.S)
-
-            link = "https://www.glassdoor.com" + href_m.group(1) if href_m else ""
-            title = clean_text(title_m.group(1) if title_m else "")
-            company = clean_text(comp_m.group(1) if comp_m else "")
-            location = clean_text(loc_m.group(1) if loc_m else "")
-            date_posted = parse_relative_date(clean_text(date_m.group(1) if date_m else ""))
-
-            jobs.append(JobItem(
-                source="Glassdoor",
-                title=title,
-                company=company,
-                location=location,
-                date_posted=date_posted,
-                link=link,
-                reasons=[],
-            ))
-    return jobs, logs
 
 
 def is_allowed_url(url: str) -> bool:
@@ -232,15 +141,213 @@ def score_item(item: JobItem) -> float:
     return round(score, 2)
 
 
-def ralph_loop(items: List[JobItem], max_iter: int = 5) -> Tuple[List[JobItem], List[str]]:
-    logs = []
+def fetch_url_with_retry(url: str, logs: List[str], error_reasons: List[str], timeout: int = REQUEST_TIMEOUT_SEC) -> str:
+    last_err = ""
+    for attempt in range(1, REQUEST_RETRIES + 1):
+        ua = pick_user_agent()
+        req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept-Language": "en-SG,en;q=0.9"})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                body = resp.read().decode("utf-8", errors="ignore")
+                logs.append(f"GET ok [{attempt}/{REQUEST_RETRIES}] {url}")
+                return body
+        except Exception as e:
+            last_err = str(e)
+            wait = BASE_BACKOFF_SEC * (2 ** (attempt - 1)) + random.uniform(0.2, 1.0)
+            logs.append(f"GET fail [{attempt}/{REQUEST_RETRIES}] {url} :: {e} (sleep {wait:.1f}s)")
+            time.sleep(wait)
+    error_reasons.append(f"fetch_failed: {url} :: {last_err}")
+    return ""
+
+
+def build_linkedin_urls(keyword: str, max_pages: int) -> List[str]:
+    urls: List[str] = []
+    for page in range(max_pages):
+        start = page * 25
+        params_api = {"keywords": keyword, "location": "Singapore", "start": str(start)}
+        urls.append(
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?"
+            + urllib.parse.urlencode(params_api)
+        )
+
+        params_search = {
+            "keywords": keyword,
+            "location": "Singapore",
+            "trk": "public_jobs_jobs-search-bar_search-submit",
+            "position": "1",
+            "pageNum": str(page),
+            "start": str(start),
+        }
+        urls.append("https://www.linkedin.com/jobs/search/?" + urllib.parse.urlencode(params_search))
+    return urls
+
+
+def build_glassdoor_urls(keyword: str, max_pages: int) -> List[str]:
+    q = urllib.parse.quote_plus(keyword)
+    urls: List[str] = []
+    for page in range(max_pages):
+        # Known public templates; Glassdoor markup often changes, so we try several.
+        urls.append(f"https://www.glassdoor.com/Job/singapore-{q}-jobs-SRCH_IL.0,9_IN217_KO10,40_IP{page+1}.htm")
+        urls.append(f"https://www.glassdoor.com/Job/singapore-{q}-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc={page+1}")
+        urls.append(f"https://www.glassdoor.com/Job/jobs.htm?sc.keyword={q}&locT=C&locId=114&locKeyword=Singapore&p={page+1}")
+    return urls
+
+
+def extract_jobs_from_html(body: str, source_hint: str) -> List[JobItem]:
+    jobs: List[JobItem] = []
+
+    # Generic anchor extraction; strict filtering will occur in Ralph-loop.
+    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', body, flags=re.S | re.I):
+        href = m.group(1).strip()
+        text = clean_text(m.group(2))
+        if not href:
+            continue
+
+        full = href
+        if href.startswith("/"):
+            if source_hint == "LinkedIn":
+                full = "https://www.linkedin.com" + href
+            elif source_hint == "Glassdoor":
+                full = "https://www.glassdoor.com" + href
+
+        if not is_allowed_url(full):
+            continue
+
+        low = full.lower()
+        if "linkedin.com" in low and "/jobs/" not in low and "currentjobid" not in low:
+            continue
+        if "glassdoor.com" in low and ("joblisting" not in low and "/job/" not in low and "jobs.htm" in low):
+            continue
+
+        title = text
+        if not role_valid(title):
+            continue
+
+        # Try finding local card window around anchor for company/location/date signals.
+        idx = m.start()
+        card = body[max(0, idx - 500): idx + 1500]
+        company = ""
+        location = "Singapore"
+        date_posted = ""
+
+        company_matchers = [
+            r'base-search-card__subtitle[^>]*>(.*?)</',
+            r'employerName[^>]*>(.*?)</',
+            r'data-test="employer-name"[^>]*>(.*?)</',
+        ]
+        for cm in company_matchers:
+            cm_m = re.search(cm, card, flags=re.S | re.I)
+            if cm_m:
+                company = clean_text(cm_m.group(1))
+                break
+
+        loc_matchers = [
+            r'job-search-card__location[^>]*>(.*?)</',
+            r'locationName[^>]*>(.*?)</',
+            r'data-test="emp-location"[^>]*>(.*?)</',
+        ]
+        for lm in loc_matchers:
+            lm_m = re.search(lm, card, flags=re.S | re.I)
+            if lm_m:
+                location = clean_text(lm_m.group(1))
+                break
+
+        date_match = re.search(r'<time[^>]*datetime="([^"]+)"', card, flags=re.I)
+        if date_match:
+            date_posted = parse_relative_date(date_match.group(1))
+        else:
+            rel_match = re.search(r'(\d+\+?\s*(?:hour|day|week|month|year)s?\s+ago|today|yesterday|just posted)', card, flags=re.I)
+            if rel_match:
+                date_posted = parse_relative_date(rel_match.group(1))
+
+        source = "LinkedIn" if "linkedin.com" in low else "Glassdoor"
+        jobs.append(JobItem(source=source, title=title, company=company, location=location, date_posted=date_posted, link=full, reasons=[]))
+
+    return jobs
+
+
+def fetch_requests_path(max_pages: int, logs: List[str], error_reasons: List[str]) -> List[JobItem]:
+    jobs: List[JobItem] = []
+
+    for kw in LINKEDIN_KEYWORDS:
+        for url in build_linkedin_urls(kw, max_pages=max_pages):
+            body = fetch_url_with_retry(url, logs, error_reasons)
+            if not body:
+                continue
+            extracted = extract_jobs_from_html(body, "LinkedIn")
+            logs.append(f"LinkedIn extracted {len(extracted)} from template URL")
+            jobs.extend(extracted)
+            time.sleep(random.uniform(0.8, 1.7))
+
+    for kw in GLASSDOOR_KEYWORDS:
+        for url in build_glassdoor_urls(kw, max_pages=max_pages):
+            body = fetch_url_with_retry(url, logs, error_reasons)
+            if not body:
+                continue
+            extracted = extract_jobs_from_html(body, "Glassdoor")
+            logs.append(f"Glassdoor extracted {len(extracted)} from template URL")
+            jobs.extend(extracted)
+            time.sleep(random.uniform(0.8, 1.7))
+
+    return jobs
+
+
+def fetch_browser_path(max_pages: int, headful: bool, logs: List[str], error_reasons: List[str]) -> List[JobItem]:
+    jobs: List[JobItem] = []
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as e:
+        error_reasons.append(f"browser_unavailable: {e}")
+        logs.append("Playwright import failed; browser collector skipped.")
+        return jobs
+
+    all_urls: List[Tuple[str, str]] = []
+    for kw in LINKEDIN_KEYWORDS:
+        all_urls.extend([("LinkedIn", u) for u in build_linkedin_urls(kw, max_pages=max_pages)])
+    for kw in GLASSDOOR_KEYWORDS:
+        all_urls.extend([("Glassdoor", u) for u in build_glassdoor_urls(kw, max_pages=max_pages)])
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=not headful, slow_mo=120 if headful else 0)
+        context = browser.new_context(user_agent=pick_user_agent(), locale="en-SG", timezone_id="Asia/Singapore")
+        page = context.new_page()
+        page.set_default_navigation_timeout(90000)
+        page.set_default_timeout(90000)
+
+        for source, url in all_urls:
+            try:
+                logs.append(f"Browser nav: {url}")
+                page.goto(url, wait_until="domcontentloaded")
+                page.wait_for_timeout(int(random.uniform(1200, 3000)))
+                try:
+                    page.mouse.wheel(0, random.randint(1200, 3000))
+                    page.wait_for_timeout(int(random.uniform(800, 1800)))
+                except Exception:
+                    pass
+                body = page.content()
+                extracted = extract_jobs_from_html(body, source)
+                logs.append(f"Browser {source} extracted {len(extracted)} from {url}")
+                jobs.extend(extracted)
+            except Exception as e:
+                msg = f"browser_nav_failed: {url} :: {e}"
+                logs.append(msg)
+                error_reasons.append(msg)
+
+        context.close()
+        browser.close()
+
+    return jobs
+
+
+def ralph_loop(items: List[JobItem], max_iter: int = 5) -> Tuple[List[JobItem], List[str], List[str]]:
+    logs: List[str] = []
     current = items[:]
+    rejected_reasons: List[str] = []
 
     for i in range(1, max_iter + 1):
         before = len(current)
         checked: List[JobItem] = []
 
-        # remove invalid required/source/location/role/freshness
         for it in current:
             it.reasons = []
             required = all([it.company, it.title, it.link, it.date_posted, it.source])
@@ -258,8 +365,9 @@ def ralph_loop(items: List[JobItem], max_iter: int = 5) -> Tuple[List[JobItem], 
             it.confidence = score_item(it)
             if not it.reasons:
                 checked.append(it)
+            else:
+                rejected_reasons.append(f"{it.source}|{it.title[:80]} :: {','.join(it.reasons)}")
 
-        # dedupe
         deduped: Dict[str, JobItem] = {}
         for it in checked:
             key = f"{it.source}|{it.company.strip().lower()}|{it.title.strip().lower()}"
@@ -270,15 +378,14 @@ def ralph_loop(items: List[JobItem], max_iter: int = 5) -> Tuple[List[JobItem], 
         after = len(current)
         removed = before - after
         logs.append(f"Ralph-loop iter {i}: {before} -> {after} (removed {removed})")
-
         if removed == 0:
             logs.append(f"Ralph-loop converged at iter {i}.")
             break
 
-    return current, logs
+    return current, logs, rejected_reasons
 
 
-def render_markdown(items: List[JobItem], logs: List[str]) -> str:
+def render_markdown(items: List[JobItem], logs: List[str], errors: List[str], min_results: int, rounds_done: int) -> str:
     now = dt.datetime.now().strftime("%Y-%m-%d %H:%M %Z")
     lines = [
         "# Singapore Quant Jobs Brief",
@@ -289,10 +396,27 @@ def render_markdown(items: List[JobItem], logs: List[str]) -> str:
         "- Sources: LinkedIn, Glassdoor only",
         "- Roles: Quant Researcher / Quant Trader (+ close variants)",
         "- Location: Singapore only",
+        f"- Min target results: {min_results}",
+        f"- Rounds executed: {rounds_done}",
         "",
-        "## Ralph-loop QA Log",
+        "## Diagnostics",
     ]
-    lines.extend([f"- {l}" for l in logs] or ["- No QA logs."])
+    lines.extend([f"- {l}" for l in logs] or ["- No diagnostics logs."])
+    lines.append("")
+    lines.append("## Last Error Reasons")
+    if errors:
+        # Show latest distinct reasons only.
+        seen = set()
+        for e in reversed(errors):
+            if e in seen:
+                continue
+            seen.add(e)
+            lines.append(f"- {e}")
+            if len(seen) >= 12:
+                break
+    else:
+        lines.append("- None")
+
     lines.append("")
     lines.append(f"## Final Shortlist ({len(items)} roles)")
     lines.append("")
@@ -315,29 +439,73 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="outputs/sg-quant-jobs-brief.md")
     ap.add_argument("--json-output", default="outputs/sg-quant-jobs-brief.json")
+    ap.add_argument("--max-pages", type=int, default=2)
+    ap.add_argument("--use-browser", action="store_true", help="Enable Playwright fallback collector")
+    ap.add_argument("--headful", action="store_true", help="Run browser visibly (effective with --use-browser)")
+    ap.add_argument("--min-results", type=int, default=0, help="Require at least this many final results before early stop")
+    ap.add_argument("--max-rounds", type=int, default=3, help="Max retry rounds for collection + QA")
     args = ap.parse_args()
-
-    all_logs: List[str] = []
-    linkedin_jobs, linkedin_logs = fetch_linkedin_jobs()
-    glassdoor_jobs, glassdoor_logs = fetch_glassdoor_jobs()
-    all_logs.extend(linkedin_logs)
-    all_logs.extend(glassdoor_logs)
-
-    combined = linkedin_jobs + glassdoor_jobs
-    filtered, qa_logs = ralph_loop(combined)
-    all_logs.extend(qa_logs)
 
     output_path = Path(args.output)
     json_path = Path(args.json_output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     json_path.parent.mkdir(parents=True, exist_ok=True)
 
-    output_path.write_text(render_markdown(filtered, all_logs), encoding="utf-8")
-    json_path.write_text(json.dumps([asdict(j) for j in filtered], ensure_ascii=False, indent=2), encoding="utf-8")
+    all_logs: List[str] = []
+    all_errors: List[str] = []
+    final_items: List[JobItem] = []
+    rounds_done = 0
+
+    for rnd in range(1, max(1, args.max_rounds) + 1):
+        rounds_done = rnd
+        round_logs: List[str] = [f"=== Round {rnd}/{args.max_rounds} ==="]
+        round_errors: List[str] = []
+
+        collected = fetch_requests_path(max_pages=max(0, args.max_pages), logs=round_logs, error_reasons=round_errors)
+
+        # Fallback automatically when requested and requests path underperforms.
+        if args.use_browser and len(collected) < max(5, args.min_results):
+            round_logs.append("Invoking browser fallback collector due to low fast-path yield.")
+            collected.extend(fetch_browser_path(max_pages=max(0, args.max_pages), headful=args.headful, logs=round_logs, error_reasons=round_errors))
+
+        filtered, qa_logs, rejected = ralph_loop(collected)
+        round_logs.extend(qa_logs)
+        if rejected:
+            round_errors.extend(rejected[-30:])
+
+        all_logs.extend(round_logs)
+        all_errors.extend(round_errors)
+        final_items = filtered
+
+        all_logs.append(f"Round {rnd} final count: {len(final_items)}")
+        if len(final_items) >= max(0, args.min_results):
+            all_logs.append(f"Stop condition met: {len(final_items)} >= min-results {args.min_results}")
+            break
+        if rnd < max(1, args.max_rounds):
+            all_logs.append("Stop condition not met; continuing to next round.")
+        else:
+            all_logs.append("Stop condition not met; max rounds reached.")
+
+    md = render_markdown(final_items, all_logs, all_errors, min_results=max(0, args.min_results), rounds_done=rounds_done)
+    output_path.write_text(md, encoding="utf-8")
+
+    payload = {
+        "meta": {
+            "generated_at": dt.datetime.now().isoformat(),
+            "min_results": max(0, args.min_results),
+            "max_rounds": max(1, args.max_rounds),
+            "rounds_done": rounds_done,
+            "final_count": len(final_items),
+        },
+        "diagnostics": all_logs,
+        "last_error_reasons": all_errors[-50:],
+        "items": [asdict(j) for j in final_items],
+    }
+    json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"Wrote markdown: {output_path}")
     print(f"Wrote json: {json_path}")
-    print(f"Final result count: {len(filtered)}")
+    print(f"Final result count: {len(final_items)}")
     return 0
 
 

@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "generated_at": "2026-03-03T09:04:36.635982",
+    "min_results": 5,
+    "max_rounds": 1,
+    "rounds_done": 1,
+    "final_count": 0
+  },
+  "diagnostics": [
+    "=== Round 1/1 ===",
+    "Invoking browser fallback collector due to low fast-path yield.",
+    "Playwright import failed; browser collector skipped.",
+    "Ralph-loop iter 1: 0 -> 0 (removed 0)",
+    "Ralph-loop converged at iter 1.",
+    "Round 1 final count: 0",
+    "Stop condition not met; max rounds reached."
+  ],
+  "last_error_reasons": [
+    "browser_unavailable: No module named 'playwright'"
+  ],
+  "items": []
+}
