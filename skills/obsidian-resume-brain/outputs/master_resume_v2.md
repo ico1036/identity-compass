@@ -1,0 +1,28 @@
+# JIWOONG KIM
+Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a
+
+## SUMMARY
+Quantitative Researcher (Ph.D. Physics) focused on systematic equity research and production-ready research tooling. Built and operated an agentic research workflow for signal generation, validation, and iterative model improvement. Contributed to live portfolio research and monitoring for a US equity growth mutual fund, supporting +39% cumulative return and +9% alpha vs S&P 500 over 16 months. Target profile: research-heavy roles (Research 90% / Trader 10%).
+
+## EXPERIENCE
+### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024
+- Built an autonomous multi-agent quant research workflow (idea generation, backtesting, validation, iteration) with Claude Agent SDK.
+- Developed a synthetic quant-team process that produced diversified, low-correlation signals; best validated strategy set reached backtested Sharpe 2.8.
+- Supported research, portfolio construction, and performance monitoring for an AI-driven US Equity Growth mutual fund (peak AUM: $22M).
+- Built a multi-stage alpha pipeline on high-dimensional fundamental data using XGBoost, cross-sectional ranking, and mean-variance optimization.
+- Built an event-driven backtesting framework that improved research run-time by ~10x and reduced look-ahead bias risk in the prior process.
+- Developed internal quant dashboard tooling for model diagnostics, scenario review, and stakeholder communication.
+
+## EDUCATION
+- Ph.D. in Physics | Kyungpook National University | 2019 – 2024
+- M.S. in Physics | Kyungpook National University | 2017 – 2019
+- B.S. in Physics | Kyungpook National University | 2013 – 2017
+
+## RESEARCH HIGHLIGHTS
+- Statistical modeling and ML for signal/background classification in the CERN CMS experiment.
+- Led distributed deep learning experiments across 1,000+ computing nodes.
+- Best Paper Awards: Korean Physical Society (2020), Korean Computational Engineering Society (2021).
+- Publication: "Multi-Jet Event Classification with Convolutional Neural Network At Large Scale" (Journal of Physics: Conference Series, ACAT 2021).
+
+## SKILLS
+Python, SQL, Shell (Linux/macOS) | XGBoost, PyTorch, scikit-learn, pandas, polars, NumPy | Claude Agent SDK, Google ADK | Git, Docker

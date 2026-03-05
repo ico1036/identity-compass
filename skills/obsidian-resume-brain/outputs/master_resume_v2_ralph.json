@@ -1,0 +1,81 @@
+{
+  "keyword_coverage": {
+    "extracted_keywords": [
+      "portfolio",
+      "risk",
+      "quantitative",
+      "researcher",
+      "role",
+      "focused",
+      "systematic",
+      "equity",
+      "research.",
+      "build",
+      "alpha",
+      "signals",
+      "validate",
+      "models",
+      "support",
+      "construction",
+      "controls",
+      "backtesting",
+      "infrastructure.",
+      "strong",
+      "python",
+      "sql",
+      "machine",
+      "learning",
+      "statistics"
+    ],
+    "matched_keywords": [
+      "portfolio",
+      "risk",
+      "quantitative",
+      "researcher",
+      "focused",
+      "systematic",
+      "equity",
+      "alpha",
+      "signals",
+      "construction",
+      "backtesting",
+      "python",
+      "sql",
+      "learning"
+    ],
+    "missing_keywords": [
+      "role",
+      "research.",
+      "build",
+      "validate",
+      "models",
+      "support",
+      "controls",
+      "infrastructure.",
+      "strong",
+      "machine",
+      "statistics"
+    ],
+    "coverage_ratio": 0.56
+  },
+  "quantified_achievements_present": {
+    "passed": true,
+    "count": 12,
+    "examples": [
+      "Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a",
+      "Quantitative Researcher (Ph.D. Physics) focused on systematic equity research and production-ready research tooling. Built and operated an agentic research workflow for signal generation, validation, and iterative model improvement. Contributed to live portfolio research and monitoring for a US equity growth mutual fund, supporting +39% cumulative return and +9% alpha vs S&P 500 over 16 months. Target profile: research-heavy roles (Research 90% / Trader 10%).",
+      "### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024",
+      "- Developed a synthetic quant-team process that produced diversified, low-correlation signals; best validated strategy set reached backtested Sharpe 2.8.",
+      "- Supported research, portfolio construction, and performance monitoring for an AI-driven US Equity Growth mutual fund (peak AUM: $22M)."
+    ]
+  },
+  "genericness_heuristic": {
+    "generic_phrase_hits": 0,
+    "generic_phrases_found": [],
+    "score": 0.0
+  },
+  "consistency_flags": {
+    "passed": true,
+    "flags": []
+  }
+}
