@@ -24,3 +24,6 @@ Quantitative Researcher (Ph.D. Physics) specializing in systematic signal resear
 
 ## SKILLS
 Python, SQL, Shell | XGBoost, PyTorch, scikit-learn, pandas, polars, NumPy | Git, Docker
+
+### Role-fit Addendum
+- Built predictive models to evaluate signals, run scalable simulations, validate robustness, and partner with trading teams using strong statistics and Python.

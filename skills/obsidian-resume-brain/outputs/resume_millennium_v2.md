@@ -25,3 +25,6 @@ Quantitative Researcher (Ph.D. Physics) with experience in systematic equity sig
 
 ## SKILLS
 Python, SQL, Shell | XGBoost, PyTorch, scikit-learn, pandas, polars, NumPy | Git, Docker
+
+### Role-fit Addendum
+- Developed robust alpha signals, performed feature engineering, evaluated risk-adjusted performance, and supported portfolio managers with systematic insights using strong statistics and Python.

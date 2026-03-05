@@ -33,9 +33,19 @@
       "researcher",
       "strategy",
       "development.",
+      "predictive",
       "models",
+      "evaluate",
+      "signals",
+      "run",
       "scalable",
-      "python"
+      "simulations",
+      "validate",
+      "robustness",
+      "partner",
+      "strong",
+      "python",
+      "statistics"
     ],
     "missing_keywords": [
       "jump",
@@ -43,20 +53,10 @@
       "focused",
       "research-driven",
       "build",
-      "predictive",
-      "evaluate",
-      "signals",
-      "run",
-      "simulations",
-      "validate",
-      "robustness",
-      "partner",
       "teams.",
-      "requires",
-      "strong",
-      "statistics"
+      "requires"
     ],
-    "coverage_ratio": 0.32
+    "coverage_ratio": 0.72
   },
   "quantified_achievements_present": {
     "passed": true,

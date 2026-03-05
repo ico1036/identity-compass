@@ -31,32 +31,32 @@
       "research",
       "quantitative",
       "alpha",
+      "signals",
+      "robust",
       "backtesting",
+      "feature",
+      "engineering",
+      "risk-adjusted",
+      "performance",
       "portfolio",
+      "managers",
       "systematic",
-      "python"
+      "strong",
+      "python",
+      "statistics"
     ],
     "missing_keywords": [
       "millennium",
       "platform",
       "role.",
       "develop",
-      "signals",
       "build",
-      "robust",
       "perform",
-      "feature",
-      "engineering",
       "evaluate",
-      "risk-adjusted",
-      "performance",
       "support",
-      "managers",
-      "insights.",
-      "strong",
-      "statistics"
+      "insights."
     ],
-    "coverage_ratio": 0.28
+    "coverage_ratio": 0.64
   },
   "quantified_achievements_present": {
     "passed": true,
