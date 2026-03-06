@@ -17,3 +17,14 @@
 
 ### Information-gain status
 - Still increasing (not plateaued). Continue identity mapping before final resume freeze.
+
+## 2026-03-06 (workflow batch update)
+### New information added
+- Operational preference strengthened: prioritize speed while preserving validation gates.
+- Active target company basket fixed to five names for current run.
+
+### Node strengthening
+- Process-discipline preference reinforced (full pipeline, not ad-hoc edits).
+
+### Contradictions
+- None observed.

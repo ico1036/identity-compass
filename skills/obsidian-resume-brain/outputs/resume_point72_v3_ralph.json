@@ -1,0 +1,75 @@
+{
+  "keyword_coverage": {
+    "extracted_keywords": [
+      "research",
+      "point72",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium",
+      "inferred",
+      "discretionary-systematic",
+      "platform",
+      "patterns.",
+      "quantitative",
+      "alpha",
+      "hypothesis",
+      "testing",
+      "collaboration",
+      "signal",
+      "model",
+      "diagnostics",
+      "portfolio",
+      "python",
+      "statistics",
+      "validation"
+    ],
+    "matched_keywords": [
+      "research",
+      "discretionary-systematic",
+      "quantitative",
+      "alpha",
+      "hypothesis",
+      "testing",
+      "signal",
+      "model",
+      "portfolio",
+      "python",
+      "validation"
+    ],
+    "missing_keywords": [
+      "point72",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium",
+      "inferred",
+      "platform",
+      "patterns.",
+      "collaboration",
+      "diagnostics",
+      "statistics"
+    ],
+    "coverage_ratio": 0.5
+  },
+  "quantified_achievements_present": {
+    "passed": true,
+    "count": 11,
+    "examples": [
+      "Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a",
+      "Quantitative Researcher (Ph.D. Physics) focused on alpha research, fast hypothesis testing, and PM-facing research communication. Experienced in building production-style research infrastructure and translating model outputs into portfolio research decisions. Targeting discretionary-systematic hybrid environments with strong research standards (Research 90% / Trader 10%).",
+      "### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024",
+      "- Created diversified signal sets and validation checks; best validated cohort reached backtested Sharpe 2.8.",
+      "- Contributed to live strategy research and monitoring for a US equity growth mutual fund (peak AUM: $22M), supporting +39% cumulative return and +9% alpha vs benchmark over 16 months."
+    ]
+  },
+  "genericness_heuristic": {
+    "generic_phrase_hits": 0,
+    "generic_phrases_found": [],
+    "score": 0.0
+  },
+  "consistency_flags": {
+    "passed": true,
+    "flags": []
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "keyword_coverage": {
+    "extracted_keywords": [
+      "cross-asset",
+      "qcp",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium-low",
+      "inferred",
+      "quant",
+      "assumptions.",
+      "quantitative",
+      "research",
+      "digital",
+      "assets",
+      "risk",
+      "analytics",
+      "model",
+      "governance",
+      "validation",
+      "portfolio",
+      "construction",
+      "monitoring",
+      "systematic"
+    ],
+    "matched_keywords": [
+      "cross-asset",
+      "quant",
+      "quantitative",
+      "research",
+      "risk",
+      "model",
+      "governance",
+      "validation",
+      "portfolio",
+      "construction",
+      "monitoring",
+      "systematic"
+    ],
+    "missing_keywords": [
+      "qcp",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium-low",
+      "inferred",
+      "assumptions.",
+      "digital",
+      "assets",
+      "analytics"
+    ],
+    "coverage_ratio": 0.545
+  },
+  "quantified_achievements_present": {
+    "passed": true,
+    "count": 11,
+    "examples": [
+      "Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a",
+      "Quantitative Researcher (Ph.D. Physics) with experience in systematic signal development, validation, and portfolio risk analytics. Built robust research systems for feature testing and model iteration with clear governance, including digital-asset relevant risk framing. Interested in cross-asset quant research roles (Research 90% / Trader 10%).",
+      "### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024",
+      "- Developed diversified alpha candidates with formal validation; best strategy set reached backtested Sharpe 2.8.",
+      "- Supported live model research and monitoring for a US equity growth mutual fund (peak AUM: $22M), contributing to +39% cumulative return and +9% alpha vs S&P 500 over 16 months."
+    ]
+  },
+  "genericness_heuristic": {
+    "generic_phrase_hits": 0,
+    "generic_phrases_found": [],
+    "score": 0.0
+  },
+  "consistency_flags": {
+    "passed": true,
+    "flags": []
+  }
+}

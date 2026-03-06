@@ -1,0 +1,120 @@
+{
+  "company": "POINT72",
+  "top_keywords": [
+    [
+      "research",
+      4
+    ],
+    [
+      "discretionary-systematic",
+      2
+    ],
+    [
+      "likely",
+      2
+    ],
+    [
+      "alpha",
+      2
+    ],
+    [
+      "hypothesis",
+      2
+    ],
+    [
+      "testing",
+      2
+    ],
+    [
+      "signal",
+      2
+    ],
+    [
+      "python",
+      2
+    ],
+    [
+      "statistics",
+      2
+    ],
+    [
+      "point72",
+      1
+    ],
+    [
+      "context",
+      1
+    ],
+    [
+      "assumption-based",
+      1
+    ],
+    [
+      "minimal",
+      1
+    ],
+    [
+      "confidence",
+      1
+    ],
+    [
+      "medium",
+      1
+    ],
+    [
+      "inferred",
+      1
+    ],
+    [
+      "platform",
+      1
+    ],
+    [
+      "hybrid",
+      1
+    ],
+    [
+      "hiring",
+      1
+    ],
+    [
+      "language",
+      1
+    ],
+    [
+      "explicit",
+      1
+    ],
+    [
+      "current",
+      1
+    ],
+    [
+      "not",
+      1
+    ],
+    [
+      "provided.",
+      1
+    ]
+  ],
+  "themes": {
+    "research": 1,
+    "trading": 1,
+    "risk": 1,
+    "ml": 1,
+    "engineering": 1
+  },
+  "resume_gaps": [
+    "discretionary-systematic",
+    "likely",
+    "hypothesis",
+    "testing",
+    "statistics",
+    "point72",
+    "context",
+    "assumption-based",
+    "minimal",
+    "confidence"
+  ]
+}

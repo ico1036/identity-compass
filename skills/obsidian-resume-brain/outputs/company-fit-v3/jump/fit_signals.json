@@ -1,0 +1,120 @@
+{
+  "company": "JUMP",
+  "top_keywords": [
+    [
+      "trading",
+      3
+    ],
+    [
+      "research-first",
+      2
+    ],
+    [
+      "likely",
+      2
+    ],
+    [
+      "scalable",
+      2
+    ],
+    [
+      "experimentation",
+      2
+    ],
+    [
+      "signal",
+      2
+    ],
+    [
+      "robustness",
+      2
+    ],
+    [
+      "model",
+      2
+    ],
+    [
+      "performance",
+      2
+    ],
+    [
+      "diagnostics",
+      2
+    ],
+    [
+      "collaboration",
+      2
+    ],
+    [
+      "jump",
+      1
+    ],
+    [
+      "context",
+      1
+    ],
+    [
+      "assumption-based",
+      1
+    ],
+    [
+      "minimal",
+      1
+    ],
+    [
+      "confidence",
+      1
+    ],
+    [
+      "medium-low",
+      1
+    ],
+    [
+      "inferred",
+      1
+    ],
+    [
+      "environment",
+      1
+    ],
+    [
+      "assumptions",
+      1
+    ],
+    [
+      "explicit",
+      1
+    ],
+    [
+      "current",
+      1
+    ],
+    [
+      "not",
+      1
+    ],
+    [
+      "provided.",
+      1
+    ]
+  ],
+  "themes": {
+    "research": 1,
+    "trading": 1,
+    "risk": 1,
+    "ml": 1,
+    "engineering": 1
+  },
+  "resume_gaps": [
+    "trading",
+    "research-first",
+    "likely",
+    "scalable",
+    "experimentation",
+    "robustness",
+    "collaboration",
+    "jump",
+    "context",
+    "assumption-based"
+  ]
+}

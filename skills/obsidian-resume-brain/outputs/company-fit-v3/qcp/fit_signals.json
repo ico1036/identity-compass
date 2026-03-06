@@ -1,0 +1,120 @@
+{
+  "company": "QCP",
+  "top_keywords": [
+    [
+      "cross-asset",
+      3
+    ],
+    [
+      "research",
+      3
+    ],
+    [
+      "quant",
+      2
+    ],
+    [
+      "likely",
+      2
+    ],
+    [
+      "digital",
+      2
+    ],
+    [
+      "assets",
+      2
+    ],
+    [
+      "model",
+      2
+    ],
+    [
+      "portfolio",
+      2
+    ],
+    [
+      "risk",
+      2
+    ],
+    [
+      "analytics",
+      2
+    ],
+    [
+      "governance",
+      2
+    ],
+    [
+      "monitoring",
+      2
+    ],
+    [
+      "qcp",
+      1
+    ],
+    [
+      "context",
+      1
+    ],
+    [
+      "assumption-based",
+      1
+    ],
+    [
+      "minimal",
+      1
+    ],
+    [
+      "confidence",
+      1
+    ],
+    [
+      "medium-low",
+      1
+    ],
+    [
+      "inferred",
+      1
+    ],
+    [
+      "crypto-leaning",
+      1
+    ],
+    [
+      "assumptions",
+      1
+    ],
+    [
+      "explicit",
+      1
+    ],
+    [
+      "current",
+      1
+    ],
+    [
+      "not",
+      1
+    ]
+  ],
+  "themes": {
+    "research": 1,
+    "trading": 1,
+    "risk": 1,
+    "ml": 1,
+    "engineering": 0
+  },
+  "resume_gaps": [
+    "cross-asset",
+    "likely",
+    "digital",
+    "assets",
+    "analytics",
+    "governance",
+    "qcp",
+    "context",
+    "assumption-based",
+    "minimal"
+  ]
+}

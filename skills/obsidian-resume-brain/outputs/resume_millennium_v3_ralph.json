@@ -1,0 +1,77 @@
+{
+  "keyword_coverage": {
+    "extracted_keywords": [
+      "research",
+      "millennium",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium",
+      "inferred",
+      "multi-manager",
+      "platform",
+      "patterns.",
+      "quantitative",
+      "alpha",
+      "feature",
+      "engineering",
+      "validation",
+      "risk-adjusted",
+      "performance",
+      "portfolio",
+      "analytics",
+      "support",
+      "statistical",
+      "rigor",
+      "python"
+    ],
+    "matched_keywords": [
+      "research",
+      "multi-manager",
+      "quantitative",
+      "alpha",
+      "feature",
+      "engineering",
+      "validation",
+      "risk-adjusted",
+      "performance",
+      "portfolio",
+      "analytics",
+      "statistical",
+      "python"
+    ],
+    "missing_keywords": [
+      "millennium",
+      "context",
+      "assumption-based",
+      "confidence",
+      "medium",
+      "inferred",
+      "platform",
+      "patterns.",
+      "support",
+      "rigor"
+    ],
+    "coverage_ratio": 0.565
+  },
+  "quantified_achievements_present": {
+    "passed": true,
+    "count": 11,
+    "examples": [
+      "Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a",
+      "Quantitative Researcher (Ph.D. Physics) with experience in systematic equity signal research, model validation, and portfolio analytics. Built reproducible research pipelines and tooling to improve idea throughput under platform-style evaluation rigor. Seeking multi-manager quant research roles with strict performance and risk standards (Research 90% / Trader 10%).",
+      "### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024",
+      "- Produced diversified, low-correlation signal candidates; top validated set reached backtested Sharpe 2.8.",
+      "- Supported portfolio research, analytics, and monitoring for a US Equity Growth mutual fund (peak AUM: $22M), contributing to +39% cumulative return and +9% alpha vs S&P 500 over 16 months."
+    ]
+  },
+  "genericness_heuristic": {
+    "generic_phrase_hits": 0,
+    "generic_phrases_found": [],
+    "score": 0.0
+  },
+  "consistency_flags": {
+    "passed": true,
+    "flags": []
+  }
+}
