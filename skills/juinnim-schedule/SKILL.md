@@ -10,16 +10,15 @@ Use `gws` CLI for all calendar actions.
 ## Core Rules
 
 - Treat timezone as `Asia/Seoul` unless the user specifies otherwise.
-- For "next 3 days" checks, use:
-  - `timeMin`: today 00:00 in KST
-  - `timeMax`: +3 days 00:00 in KST
+- 핵심 원칙: 사용자가 일정 관련 질문을 하면, 기본 추측하지 말고 `gws` CLI로 해당 기간을 조회해 답한다.
+- 기간이 명시되지 않으면 한 줄로 되묻는다. (예: "오늘/이번주/다음주 중 어느 범위로 볼까요?")
 - Prefer `calendarId: "primary"`.
 - Always summarize results in concise Korean.
 - After create/update/delete, confirm completion with event title and time.
 
 ## Quick Commands
 
-### 1) Next 3 days schedule check
+### 1) Schedule check (기간 지정 조회)
 
 ```bash
 gws calendar events list --params '{
