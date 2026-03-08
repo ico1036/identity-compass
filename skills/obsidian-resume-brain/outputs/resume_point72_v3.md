@@ -14,6 +14,9 @@ Quantitative Researcher (Ph.D. Physics) focused on alpha research, fast hypothes
 - Implemented portfolio construction and risk-aware weighting via mean-variance optimization.
 - Rebuilt backtesting infrastructure to reduce runtime by ~10x and improve testing discipline.
 
+- Translated model uncertainty into PM-ready decision ranges using parameter sensitivity analysis, regime stress tests, and out-of-sample stability checks.
+- Applied strict pre-deployment kill rules, rejecting in-sample-only strategies and models dependent on narrow parameter peaks.
+
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024
 - M.S. in Physics | Kyungpook National University | 2017 – 2019

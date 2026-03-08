@@ -14,6 +14,9 @@ Quantitative Researcher (Ph.D. Physics) with experience in systematic signal dev
 - Supported portfolio construction and risk analysis with mean-variance optimization.
 - Built event-driven backtest architecture with ~10x runtime gain to scale research iteration.
 
+- Translated model uncertainty into PM-ready decision ranges using parameter sensitivity analysis, regime stress tests, and out-of-sample stability checks.
+- Applied strict pre-deployment kill rules, rejecting in-sample-only strategies and models dependent on narrow parameter peaks.
+
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024
 - M.S. in Physics | Kyungpook National University | 2017 – 2019

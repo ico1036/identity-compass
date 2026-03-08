@@ -14,6 +14,9 @@ Quantitative Researcher (Ph.D. Physics) with experience in systematic equity sig
 - Applied cross-sectional selection and mean-variance optimization for portfolio construction support.
 - Built an event-driven backtest engine with ~10x speed improvement for faster, more reliable experiment cycles.
 
+- Translated model uncertainty into PM-ready decision ranges using parameter sensitivity analysis, regime stress tests, and out-of-sample stability checks.
+- Applied strict pre-deployment kill rules, rejecting in-sample-only strategies and models dependent on narrow parameter peaks.
+
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024
 - M.S. in Physics | Kyungpook National University | 2017 – 2019

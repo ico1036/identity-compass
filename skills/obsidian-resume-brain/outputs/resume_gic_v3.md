@@ -14,6 +14,9 @@ Quantitative Researcher (Ph.D. Physics) with systematic signal research and port
 - Built an event-driven backtesting system with ~10x faster runs to improve iteration speed and research reliability.
 - Delivered dashboard tools for model governance and communication with internal and external investment stakeholders.
 
+- Translated model uncertainty into PM-ready decision ranges using parameter sensitivity analysis, regime stress tests, and out-of-sample stability checks.
+- Applied strict pre-deployment kill rules, rejecting in-sample-only strategies and models dependent on narrow parameter peaks.
+
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024
 - M.S. in Physics | Kyungpook National University | 2017 – 2019

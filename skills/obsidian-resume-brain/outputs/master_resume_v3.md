@@ -12,6 +12,8 @@ Quantitative Researcher (Ph.D. Physics) focused on systematic equity research an
 - Supported research, portfolio construction, and performance monitoring for an AI-driven US Equity Growth mutual fund (peak AUM: $22M).
 - Built a multi-stage alpha pipeline on high-dimensional fundamental data using XGBoost, cross-sectional ranking, and mean-variance optimization.
 - Built an event-driven backtesting framework that improved research run-time by ~10x and reduced look-ahead bias risk in the prior process.
+- Translated model uncertainty into PM-ready decision ranges using parameter sensitivity analysis, regime stress tests, and out-of-sample stability checks.
+- Applied strict pre-deployment kill rules, rejecting in-sample-only strategies and models dependent on narrow parameter peaks.
 - Developed internal quant dashboard tooling for model diagnostics, scenario review, and stakeholder communication.
 
 ## EDUCATION
