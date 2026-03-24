@@ -251,7 +251,105 @@ tags: [career, preference, anti]
 |---------|------|
 | `scripts/export_vectors.py` | vault 벡터 노트 → vectors.json |
 | `scripts/calculate_magnetization.py` | 자화도 계산 → magnetization.json + .md |
-| `scripts/visualize_spins.html` | Three.js 3D 시각화 |
+| `scripts/visualize_2d.html` | 2D 인터랙티브 시각화 (다크 테크 테마) |
+
+---
+
+## 자동화 파이프라인 (필수)
+
+**에이전트는 벡터를 추출할 때마다 아래 전체 파이프라인을 실행해야 한다.**
+수동 개입 없이, 대화 속에서 자동으로 완료되어야 함.
+
+### 트리거 조건
+- 새 의사결정/선호/거부/가치 시그널 감지 시
+- /update 커맨드 실행 시
+- Phase 1 완료 시
+
+### 파이프라인 단계
+
+```
+1. 시그널 감지 → 벡터 추출
+2. Obsidian vault에 벡터 노트 생성/업데이트
+3. vectors.json 업데이트 (전체 벡터 목록)
+4. magnetization.json 재계산 (H, M, clusters)
+5. compass_data.json 자동 생성 ← ⚠️ 이 단계를 빠뜨리지 말 것!
+```
+
+### Step 5: compass_data.json 자동 생성
+
+vectors.json + magnetization.json → compass_data.json 변환.
+시각화(`visualize_2d.html`)가 이 파일을 로드하므로 반드시 갱신.
+
+**생성 규칙:**
+
+```python
+# vectors.json의 각 벡터를 identity/opportunities로 분류
+identity_beads = []   # domain이 career/growth/life이고 기회(회사)가 아닌 것
+opportunity_beads = [] # 회사/포지션 관련 벡터
+
+for v in vectors:
+    bead = {
+        "what": v["what"],
+        "why": v["why_essence"],
+        "dir": v["direction"],
+        "w": v["weight"],
+        "cl": classify_color(v),  # 아래 기준 참조
+        "status": v.get("status", "")
+    }
+    if is_opportunity(v):
+        bead["match"] = cosine_similarity(v["direction"], H["dir"])
+        opportunity_beads.append(bead)
+    else:
+        identity_beads.append(bead)
+
+compass_data = {
+    "identity": identity_beads,
+    "opportunities": opportunity_beads,
+    "H": {"dir": magnetization["magnetization_vector"], "mag": magnetization["magnetization_magnitude"]},
+    "oneLiner": magnetization.get("H_one_liner", ""),
+    "clusters": [
+        {"name": name.upper(), "m": c["magnetization"], "color": cluster_colors[name]}
+        for name, c in magnetization["clusters"].items()
+    ]
+}
+```
+
+**색상 분류 기준 (cl 필드):**
+
+| cl 값 | 조건 |
+|--------|------|
+| `identity` | 개인 정체성/가치 벡터 (회사가 아님) |
+| `hot` | 기회 + cosine match ≥ 0.85 |
+| `active` | 기회 + 이미 지원/제출 완료 |
+| `warm` | 기회 + match 0.65~0.85 |
+| `tension` | 기회 + H와 방향 충돌 있음 (match < 0.6이면서 weight ≥ 6) |
+| `cool` | 기회 + match 0.5~0.65 |
+| `avoid` | 기회 + match < 0.5 또는 anti-value 충돌 |
+
+**클러스터 색상 기본값:**
+
+```json
+{
+  "autonomy-first": "#00c8ff",
+  "depth-builder": "#a855f7",
+  "innovation-drive": "#00ff88"
+}
+```
+
+### 저장 위치
+
+모든 JSON 파일은 `scripts/` 디렉토리에 저장:
+```
+scripts/
+├── vectors.json          # 전체 벡터 목록
+├── magnetization.json    # H + M + clusters
+├── compass_data.json     # 시각화용 (자동 생성)
+├── sample_data.json      # 데모용 (수정 금지)
+└── visualize_2d.html     # 시각화 UI
+```
+
+> ⚠️ **에이전트 필수 행동**: 벡터를 추가/수정할 때마다 Step 3→4→5를 반드시 순차 실행.
+> compass_data.json이 없거나 오래되면 시각화가 빈 화면 또는 구버전을 보여준다.
 
 ---
 
