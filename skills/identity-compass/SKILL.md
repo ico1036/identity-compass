@@ -1,16 +1,13 @@
 ---
 name: identity-compass
 description: >
-  대화에서 사용자의 의사결정/가치관/선호를 벡터로 추출하고 Obsidian vault에 축적하여
-  궁극적 방향성(H 벡터)을 계산하고, 과거 의사결정들과의 정렬도(M)를 계산해 새로운 선택을 안내하는
-  초개인화 의사결정 시스템. 스핀/자기장 물리 모델 기반 베이지안 업데이트.
-  Use when: (1) 사용자의 방향성/정체성 분석, (2) 이력서 작성 시 강점 서사 생성,
-  (3) 회사/기회 적합도 평가, (4) 의사결정 보정이 필요할 때,
-  (5) "나 어떤 사람이야?", "이 회사 나한테 맞아?" 같은 질문,
-  (6) "나 요즘 길을 잃은 것 같아", "이 선택이 맞는지 모르겠어" 같은 방향감 상실,
-  (7) "A 할까 B 할까" 같은 중요한 의사결정 고민,
-  (8) 이직, 이사, 관계, 창업, 진로 등 삶을 바꾸는 결정.
-  사용자가 명시적으로 "나침반"이나 "정렬"이라고 하지 않아도 위 맥락이면 트리거하라.
+  Hyper-personalized decision compass that extracts your values and choices as vectors from
+  everyday conversations, computes your true life direction (H vector) and alignment score (M)
+  using physics-inspired magnetization + Bayesian updates, and visualizes everything as an
+  interactive decision map. No forms, no questionnaires — just talk. Use when facing career
+  moves, life decisions, identity questions ("who am I?", "is this right for me?"), or
+  comparing opportunities. Includes dialectical dialogue, decision simulation, and Obsidian
+  vault integration for persistent memory.
 ---
 
 # Identity Compass 🧭
