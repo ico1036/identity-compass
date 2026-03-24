@@ -353,12 +353,6 @@ scripts/
 
 ---
 
-## 스킬 연동
-
-- **obsidian-resume-brain** → 이력서 모드에서 compass 벡터 활용
-- **company-fit-research** → 회사 매칭 모드에서 유사도 계산
-- **sg-quant-jobs-brief** → compass 방향성으로 공고 자동 필터링
-
 ---
 
 ## 주의사항
