@@ -7,10 +7,9 @@ Quantitative Researcher (Ph.D. Physics) focused on systematic equity research an
 ## EXPERIENCE
 ### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024
 - Built an autonomous multi-agent quant research workflow (idea generation, backtesting, validation, iteration) with Claude Agent SDK.
-- Developed a synthetic quant-team process that produced diversified, low-correlation signals; best validated strategy set reached backtested Sharpe 2.8.
+- Developed a synthetic quant-team process that produced diversified, low-correlation signals
 - Supported research, portfolio construction, and performance monitoring for an AI-driven US Equity Growth mutual fund (peak AUM: $22M).
-- Built a multi-stage alpha pipeline on high-dimensional fundamental data using XGBoost, cross-sectional ranking, and mean-variance optimization.
-- Built an event-driven backtesting framework that improved research run-time by ~10x and reduced look-ahead bias risk in the prior process.
+- Built a multi-stage alpha pipeline on high-dimensional fundamental data using XGBoost and mean-variance optimization.
 - Developed internal quant dashboard tooling for model diagnostics, scenario review, and stakeholder communication.
 
 ## EDUCATION

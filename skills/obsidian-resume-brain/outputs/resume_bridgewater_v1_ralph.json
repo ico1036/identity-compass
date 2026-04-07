@@ -1,0 +1,81 @@
+{
+  "keyword_coverage": {
+    "extracted_keywords": [
+      "matches",
+      "research",
+      "bridgewater",
+      "management",
+      "systematic",
+      "experience",
+      "portfolio",
+      "asset",
+      "macro",
+      "strategies",
+      "pm-led",
+      "pod",
+      "enablement",
+      "data",
+      "pipelines",
+      "construction",
+      "risk",
+      "integration",
+      "agentic",
+      "philosophy",
+      "culture",
+      "context",
+      "company",
+      "associates",
+      "premier"
+    ],
+    "matched_keywords": [
+      "research",
+      "systematic",
+      "experience",
+      "portfolio",
+      "asset",
+      "strategies",
+      "pm-led",
+      "enablement",
+      "data",
+      "pipelines",
+      "construction",
+      "risk",
+      "integration",
+      "agentic",
+      "culture"
+    ],
+    "missing_keywords": [
+      "matches",
+      "bridgewater",
+      "management",
+      "macro",
+      "pod",
+      "philosophy",
+      "context",
+      "company",
+      "associates",
+      "premier"
+    ],
+    "coverage_ratio": 0.6
+  },
+  "quantified_achievements_present": {
+    "passed": true,
+    "count": 9,
+    "examples": [
+      "Seoul, Korea | jkimak1124@gmail.com | +82-10-9733-2847 | LinkedIn: linkedin.com/in/jiwoong-kim-b9934417a",
+      "AI-native Quant Researcher (Ph.D. in Physics) bridging research and engineering to build systematic investment systems. Designed and operate an agentic research engine that automates the full quant pipeline—from idea generation to portfolio construction—enabling scalable alpha production at low marginal cost. Experienced in live ML-driven mutual fund deployment (16-month track record) with end-to-end ownership of data pipelines, signal synthesis, and risk governance. Seeking to apply AI/ML-driven research enablement and systematic strategy implementation within a PM-led, research-first environment.",
+      "### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024",
+      "- Led model development and productionization for a S&P500 Growth mutual fund (fund size: KRW 3.4 billion), building end-to-end data pipelines and a classical ML (XGBoost) strategy stack with fundamental-data integration.",
+      "- Operated the live strategy over a 16-month period, delivering +43.54% versus +35.90% benchmark (+7.64%p), with direct ownership of portfolio construction, risk monitoring, and execution support."
+    ]
+  },
+  "genericness_heuristic": {
+    "generic_phrase_hits": 0,
+    "generic_phrases_found": [],
+    "score": 0.0
+  },
+  "consistency_flags": {
+    "passed": true,
+    "flags": []
+  }
+}

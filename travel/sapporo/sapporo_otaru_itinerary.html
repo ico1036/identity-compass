@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>삿포로·오타루 여행 플랜</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a2f;
+      --muted:#9fb0d0;
+      --text:#e8efff;
+      --accent:#6ee7b7;
+      --accent2:#60a5fa;
+      --line:#243252;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: radial-gradient(1200px 500px at 20% -10%, #1d2a4d 0%, var(--bg) 55%), var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      padding:28px;
+    }
+    .wrap{max-width:980px;margin:0 auto}
+    .hero{
+      background:linear-gradient(135deg, rgba(96,165,250,.18), rgba(110,231,183,.12));
+      border:1px solid #2d3f66;
+      border-radius:20px;
+      padding:24px;
+      margin-bottom:18px;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);
+    }
+    h1{margin:0 0 8px;font-size:30px;letter-spacing:.3px}
+    .sub{color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+    .pill{background:#0f1730;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#cfe0ff;font-size:13px}
+
+    .day{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px 16px 14px;
+      margin-bottom:12px;
+    }
+    .day h2{margin:0 0 8px;font-size:20px}
+    .concept{display:inline-block;margin-bottom:8px;background:#0d2340;border:1px solid #2a4f86;color:#c9deff;padding:4px 10px;border-radius:999px;font-size:12px}
+    ul{margin:8px 0 0 18px;padding:0}
+    li{margin:6px 0;color:#dce8ff}
+    .ok{color:var(--accent);font-weight:700}
+
+    .checklist{
+      margin-top:14px;
+      background:linear-gradient(180deg,#0f172f,#0d1430);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px 16px;
+    }
+    .checklist h3{margin:0 0 8px;font-size:18px}
+    .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+    .check{border:1px solid #294060;background:#0e1b37;border-radius:10px;padding:8px 10px}
+
+    .foot{margin-top:10px;color:#87a0c7;font-size:12px;text-align:right}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>삿포로 · 오타루 여행 최종 플랜</h1>
+      <div class="sub">체크아웃 11:00 / 체크인 15:00 기준 · 항공 4/11 입국 / 4/14 14:30 출국</div>
+      <div class="grid">
+        <div class="pill">🏨 4/11~4/12 삿포로 2박</div>
+        <div class="pill">🏨 4/13 오타루 1박</div>
+        <div class="pill">🍺 미식 + 위스키 + 징기스칸</div>
+      </div>
+    </section>
+
+    <section class="day">
+      <h2>4/11(토) — 삿포로 1박</h2>
+      <span class="concept">도착 · 적응 · 첫 술동선</span>
+      <ul>
+        <li>13:00 CTS 도착</li>
+        <li>14:30~15:30 삿포로 이동 + 체크인(15:00 이후)</li>
+        <li>16:30~18:00 오도리/다누키코지 산책</li>
+        <li>18:30~20:00 슈안 고다이 <span class="ok">✅🟩</span></li>
+        <li>20:30~22:00 스스키노 2차(가볍게)</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>4/12(일) — 삿포로 2박</h2>
+      <span class="concept">필수 미식 + 박물관 + 밤술</span>
+      <ul>
+        <li>10:00~11:30 멘야 사이미 <span class="ok">✅🟩</span></li>
+        <li>12:00~13:30 삿포로 맥주박물관 <span class="ok">✅🟩</span></li>
+        <li>14:00~15:30 시내 산책/쇼핑</li>
+        <li>16:00~17:00 수프카레 사무라이 <span class="ok">✅🟩</span></li>
+        <li>19:00~20:30 징기스칸(다루마 우선, 대기 시 대체)</li>
+        <li>20:45~22:00 THE NIKKA BAR (선택)</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>4/13(월) — 오타루 1박 (마지막 관광일)</h2>
+      <span class="concept">요이치 증류소 + 오타루 감성 동선</span>
+      <ul>
+        <li>11:00 삿포로 체크아웃</li>
+        <li>11:00~11:40 삿포로→오타루 이동</li>
+        <li>11:40~12:10 오타루 호텔 짐보관</li>
+        <li>12:10~12:40 오타루→요이치 이동</li>
+        <li>12:40~14:20 니카 위스키 요이치 증류소 <span class="ok">✅🟩</span></li>
+        <li>14:20~14:50 요이치→오타루 복귀</li>
+        <li>15:00 오타루 체크인</li>
+        <li>15:30~17:00 사카이마치/디저트/오르골</li>
+        <li>17:10~18:10 해안절벽뷰 트레킹 <span class="ok">✅🟩</span></li>
+        <li>18:30~19:40 저녁</li>
+        <li>19:50~21:00 Otaru Beer</li>
+        <li>21:10~21:40 운하 야경</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>4/14(화) — 귀국</h2>
+      <span class="concept">깔끔한 마무리</span>
+      <ul>
+        <li>09:30~10:20 오타루 아침식사</li>
+        <li>11:00 오타루 체크아웃</li>
+        <li>11:00~12:00 신치토세 이동</li>
+        <li>12:00~13:30 공항 체크인/기념품</li>
+        <li>14:30 CTS 출발</li>
+      </ul>
+    </section>
+
+    <section class="checklist">
+      <h3>필수 반영 체크</h3>
+      <div class="checks">
+        <div class="check">슈안 고다이 <span class="ok">✅🟩</span></div>
+        <div class="check">멘야 사이미 <span class="ok">✅🟩</span></div>
+        <div class="check">수프카레 사무라이 <span class="ok">✅🟩</span></div>
+        <div class="check">니카 위스키 요이치 증류소 <span class="ok">✅🟩</span></div>
+        <div class="check">삿포로 맥주박물관 <span class="ok">✅🟩</span></div>
+        <div class="check">해안절벽뷰 트레킹 <span class="ok">✅🟩</span></div>
+        <div class="check">징기스칸 저녁 <span class="ok">✅🟩</span></div>
+      </div>
+    </section>
+
+    <div class="foot">Generated by AB_kimi_bot · v2 styled itinerary</div>
+  </div>
+</body>
+</html>

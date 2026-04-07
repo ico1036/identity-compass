@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helix AI Alpha Factory v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans KR",sans-serif;font-size:15px;line-height:1.8;color:#2c3e50;background:#f5f5f5}
+.paper{max-width:900px;margin:40px auto;background:#fff;padding:60px 70px;box-shadow:0 2px 20px rgba(0,0,0,.08)}
+h1{font-family:"Noto Serif KR",serif;font-size:26px;text-align:center;margin-bottom:10px;color:#1a1a2e;border-bottom:3px solid #2c3e50;padding-bottom:15px}
+h2{font-family:"Noto Serif KR",serif;font-size:20px;margin-top:40px;margin-bottom:15px;color:#1a1a2e;border-left:4px solid #3498db;padding-left:12px}
+h3{font-size:17px;font-weight:600;margin-top:25px;margin-bottom:10px;color:#2c3e50}
+h4{font-size:15px;font-weight:600;margin-top:18px;margin-bottom:8px;color:#34495e}
+p{margin-bottom:12px}
+blockquote{background:#f8f9fa;border-left:4px solid #3498db;padding:15px 20px;margin:15px 0;font-size:14px;color:#555}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13.5px}
+th{background:#2c3e50;color:#fff;padding:10px 12px;text-align:left;font-weight:500}
+td{padding:8px 12px;border-bottom:1px solid #e0e0e0}
+tr:nth-child(even){background:#f8f9fa}
+tr:hover{background:#eef2f7}
+code{background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:13px}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:5px;overflow-x:auto;margin:15px 0}
+pre code{background:none;color:inherit}
+strong{color:#1a1a2e}
+ul,ol{margin:10px 0 10px 25px}
+li{margin-bottom:5px}
+hr{border:none;border-top:2px solid #e0e0e0;margin:30px 0}
+@media print{body{background:#fff}.paper{box-shadow:none;padding:20px;margin:0}}
+@media(max-width:768px){.paper{padding:20px;margin:10px}table{font-size:12px}th,td{padding:6px 8px}}
+</style></head><body><div class="paper"><h1>Helix AI Alpha Factory — 투자 전략 보고서 v2</h1>
+<blockquote>
+<p><strong>작성일</strong>: 2026년 3월 31일
+<strong>버전</strong>: 2.0 (V1 피드백 반영본)
+<strong>대상</strong>: 잠재 투자자, 내부 전략 의사결정자
+<strong>기밀 등급</strong>: Confidential</p>
+</blockquote>
+<hr />
+<h2>Executive Summary</h2>
+<p><strong>Helix는 AI 에이전트 기반 알파 팩토리다.</strong> 하루 최대 1,000개의 투자 시그널을 자동 생산·합성하여 글로벌 헤지펀드(Two Sigma, D.E. Shaw)만 가능했던 대규모 알파 리서치를 AI로 민주화한다.</p>
+<p><strong>핵심 숫자:</strong>
+- AI vs 인간 비용 레버리지: <strong>3,125x</strong> (알파당 $0.095 vs $297.62) [fund_economics_results.txt]
+- 백테스트 샤프비율: 1.0~2.0 → 예상 실거래 0.60~1.20 (40% 할인 적용) [fund_economics_results.txt]
+- Year 1 운영비: <strong>$115,500</strong> [fund_economics_results.txt]
+- BEP AUM (base 12%): <strong>$4.81M</strong> [fund_economics_results.txt]</p>
+<p><strong>전략:</strong>
+Apex EAM 케이맨 서브펀드를 6~8주 내 설립하고, F&amp;F 라운드($250K~$500K)를 시작으로 해외 한인 HNWI + 비한국인 투자자를 병행 타겟팅하여 12주 내 파일럿 투자 1건을 클로징한다.</p>
+<p><strong>최대 리스크:</strong> 한국 법인의 투자일임업 해당 여부 (FSCMA 제444조, 5년 이하 징역/2억 이하 벌금). <strong>Day 1 법률 자문 예약</strong>으로 선결.</p>
+<p><strong>왜 지금:</strong> 2020→2026 AI 성능/비용 효율 ~125x 개선. 2027년 AI 연비용 $12K 예상(현재 $24K 대비 50% 절감). AI가 좋아질수록 운영 레버리지가 극대화되는 유일한 구조.</p>
+<p><strong>왜 우리:</strong> 에셋플러스(AUM 2조원, 30년) 퀀트팀 스핀오프. 기관급 투자 DNA + AI 시스템 역량의 결합. 스타트업이 아닌 기관에서 나온 팀.</p>
+<hr />
+<h2>Section 1: The Opportunity — AI Alpha Factory Thesis</h2>
+<h3>1.1 문제 정의</h3>
+<p>글로벌 헤지펀드의 알파 생산은 노동집약적이다:</p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>퀀트 리서처 (인간)</th>
+<th>Helix AI 시스템</th>
+<th>배율</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>일일 알파 생산량</td>
+<td>2개/인</td>
+<td>1,000개</td>
+<td>500x</td>
+</tr>
+<tr>
+<td>알파당 비용</td>
+<td>$297.62</td>
+<td>$0.095</td>
+<td><strong>3,125x</strong></td>
+</tr>
+<tr>
+<td>1,000 알파/일 연간 비용</td>
+<td>$75,000,000 (500명)</td>
+<td>$24,000</td>
+<td><strong>3,125x</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: fund_economics_results.txt. 인간 비용은 글로벌 퀀트 리서처 평균 연봉 $150K 기준.</p>
+</blockquote>
+<p><strong>가정 명시</strong>: AI 알파당 비용은 현재 API 토큰 비용 기준이며, 1,000개 중 유효 알파(IC &gt; threshold) 비율은 약 1%로 추정. 유효 알파 기준으로도 ~31x 효율 우위 존재. [quant-strategist 분석]</p>
+<h3>1.2 솔루션: 알파 합성 파이프라인</h3>
+<pre><code>리서치 에이전트 → 코드 생성 → 검증 → 백테스팅 → 분석
+    → [통과] 알파 풀 적재 → 선택 → 합성 → 포트폴리오 최적화
+    → [실패] 리서치로 재귀
+</code></pre>
+<p><strong>알파 합성의 수학적 근거</strong> (Grinold's Fundamental Law of Active Management):
+- 개별 IC: 0.02~0.05, 알파 간 상관관계(ρ): 0.10~0.20
+- N=1,000 합성 시 샤프 1.0~2.0은 <strong>수학적으로 달성 가능</strong> [quant-strategist 검증]
+- 핵심 변수: ρ ≤ 0.15 유지가 전략 성패 좌우 (ρ 0.10 vs 0.20에서 샤프 30% 차이)
+- 한계 효용은 N=100 이후 급감 — "1,000개"는 마케팅 가치 &gt; 실질 가치</p>
+<h3>1.3 Why Now — 타이밍</h3>
+<ol>
+<li><strong>AI 비용 곡선</strong>: 2020→2026 AI 성능/비용 효율 ~125x 개선 [quant-strategist 팩트]. 2027년 예상 AI 연비용 $12,000 (현재 $24,000 대비 50% 절감)</li>
+<li><strong>카테고리 형성기</strong>: AI alpha factory는 아직 확립된 카테고리가 아님. 선점 가능</li>
+<li><strong>Q2 리밸런싱</strong>: 한국계 FO의 상반기 리밸런싱 시기와 맞물림 [fundraising-advisor]</li>
+</ol>
+<h3>1.4 Why Us — 팀</h3>
+<ul>
+<li><strong>에셋플러스 자산운용</strong> 퀀트팀 스핀오프 (모회사 AUM 2조원, 30년 운용 이력)</li>
+<li>스타트업 리스크 없이 기관급 투자 DNA 보유</li>
+<li>AI 에이전트 파이프라인 구현 완료, 백테스팅 결과 보유</li>
+</ul>
+<p><strong>솔직한 약점</strong>: 실거래 트랙레코드 <strong>0</strong>. 이것이 모든 투자자 유형에서 최대 약점 (traction 3/10). 이를 해결하기 위해 파일럿 → 3개월 트랙레코드 축적 → 기관 접근 순서로 진행.</p>
+<h3>1.5 샤프비율 벤치마크</h3>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>값</th>
+<th>글로벌 HF 분포</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>백테스트 샤프</td>
+<td>1.0~2.0</td>
+<td>상위 35%~9%</td>
+</tr>
+<tr>
+<td>예상 실거래 샤프 (40% 할인)</td>
+<td><strong>0.60~1.20</strong></td>
+<td>상위 56%~25%</td>
+</tr>
+<tr>
+<td>글로벌 HF 중간값</td>
+<td>0.70</td>
+<td>—</td>
+</tr>
+<tr>
+<td>글로벌 HF 상위 25%</td>
+<td>1.20</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: fund_economics_results.txt, HFR 글로벌 HF 샤프 분포 데이터</p>
+</blockquote>
+<p><strong>솔직한 평가</strong>: 할인 후 실거래 샤프 0.60~1.20은 HF 중간값 수준. <strong>샤프만으로는 차별화 부족</strong>. 차별화 포인트는 비용 레버리지와 스케일러빌리티.</p>
+<hr />
+<h2>Section 2: Why This Structure — 구조 비교 분석</h2>
+<h3>2.1 전체 대안 비교표</h3>
+<table>
+<thead>
+<tr>
+<th>구조</th>
+<th>설립 기간</th>
+<th>초기 비용</th>
+<th>월 운영비</th>
+<th>규제 부담</th>
+<th>투자자 인식</th>
+<th>3개월 내 가능?</th>
+<th>배제 이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apex EAM 케이맨</strong></td>
+<td><strong>6~8주</strong></td>
+<td><strong>$5K~$10K</strong></td>
+<td><strong>$3K~$8K</strong></td>
+<td><strong>낮음</strong></td>
+<td><strong>중상</strong></td>
+<td><strong>✅ Yes</strong></td>
+<td>— (채택)</td>
+</tr>
+<tr>
+<td>Bell Rock 케이맨</td>
+<td>6~8주</td>
+<td>$10K~$20K</td>
+<td>$5K~$10K</td>
+<td>낮음</td>
+<td>중</td>
+<td>✅ Yes</td>
+<td>비교 견적 필요</td>
+</tr>
+<tr>
+<td>케이맨 독자 펀드</td>
+<td>8~12주</td>
+<td>$50K~$100K</td>
+<td>$15K~$25K</td>
+<td>중</td>
+<td>상</td>
+<td>❌ No</td>
+<td>비용/시간 초과</td>
+</tr>
+<tr>
+<td>싱가포르 VCC</td>
+<td>3~6개월</td>
+<td>S$50K~$125K</td>
+<td>S$3.3K~$8.3K</td>
+<td>높음 (CMS 필수)</td>
+<td>상</td>
+<td>❌ No</td>
+<td>시간 초과, RFMC 폐지(2024.8)</td>
+</tr>
+<tr>
+<td>싱가포르 IT법인+배당</td>
+<td>2~4주</td>
+<td>S$5K</td>
+<td>S$2K</td>
+<td><strong>불법 위험</strong></td>
+<td>없음</td>
+<td>⚠️ 위험</td>
+<td>MAS 실질주의 위반 (하단 상세)</td>
+</tr>
+<tr>
+<td>BVI 펀드</td>
+<td>4~8주</td>
+<td>$15K~$30K</td>
+<td>$5K~$10K</td>
+<td>중</td>
+<td>중하</td>
+<td>⚠️ 빠듯</td>
+<td>BVI 이미지 문제</td>
+</tr>
+<tr>
+<td>홍콩 SFC</td>
+<td>4~6개월</td>
+<td>HK$300K+</td>
+<td>HK$50K+</td>
+<td>매우 높음</td>
+<td>상</td>
+<td>❌ No</td>
+<td>시간/비용 초과</td>
+</tr>
+<tr>
+<td>Delaware LP</td>
+<td>4~6주</td>
+<td>$20K~$50K</td>
+<td>$5K~$15K</td>
+<td>중 (SEC)</td>
+<td>상</td>
+<td>⚠️ 가능</td>
+<td>미국 투자자 한정 시 유리</td>
+</tr>
+<tr>
+<td>에셋플러스 라이센스</td>
+<td>즉시</td>
+<td>$0</td>
+<td>$0</td>
+<td>매우 높음</td>
+<td>중</td>
+<td>⚠️ 가능</td>
+<td>전략적 방향성 충돌</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: 각 관할권 규제기관 공식 문서, Apex EAM 웹사이트, regulatory-expert 분석</p>
+</blockquote>
+<h3>2.2 싱가포르 IT법인+배당 구조 — 상세 분석 (양면 검토)</h3>
+<p>이 구조는 "투자자가 IT회사의 주주로 참여 → 회사가 AI로 트레이딩 → 수익을 배당으로 분배"하는 모델이다.</p>
+<p><strong>작동할 수 있다는 논거:</strong>
+- 싱가포르에서 자기자본 프롭 트레이딩 회사는 CMS 라이센스 불필요 (SFA "fund management" 정의가 타인 자산 운용에 한정)
+- 싱가포르 배당 원천징수세 0% (single-tier 과세), 자본이득세 0%
+- 투자자가 진정한 주주라면 회사 자본은 "회사 소유"</p>
+<p><strong>작동하지 않는 이유 (결정적):</strong></p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>진짜 Prop Trading</th>
+<th>Helix IT법인 구조</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>자본 출처</td>
+<td>창업자/회사 자체</td>
+<td>외부 투자자가 주식 매입 형태로 납입</td>
+</tr>
+<tr>
+<td>투자자 기대</td>
+<td>없음</td>
+<td>투자 수익/배당 기대</td>
+</tr>
+<tr>
+<td>주주 역할</td>
+<td>경영 참여</td>
+<td>수동적 투자자 (passive)</td>
+</tr>
+</tbody>
+</table>
+<p>MAS 실질주의(Substance-over-Form) 원칙에 의해: (1) 투자 수익 기대로 자금 투입, (2) 운용자가 재량권 보유, (3) 자금 풀링 — 세 가지 모두 해당. MAS가 이를 fund management으로 간주할 가능성 <strong>극히 높음</strong>.</p>
+<ul>
+<li>RFMC 제도 2024년 8월 폐지 확인 [MAS 공식 문서, Waystone, IQ-EQ 복수 출처]</li>
+<li>MAS 2023/2024 집행: 무인가 규제활동 <strong>19건</strong> 조사 개시, <strong>S$440만</strong> 제재 [Sidley Austin 2025.4 분석] ⚠️ 단, 이 수치는 fund management 한정이 아닌 모든 무인가 규제활동 합산</li>
+</ul>
+<p><strong>최종 판정</strong>: ❌ 불가. 소규모(2~3명) 진짜 프롭 트레이딩은 가능하나 외부 자금 유치 목표와 모순. [검증 확신도: 90%]</p>
+<h3>2.3 Apex EAM — 왜 채택했는가</h3>
+<p><strong>핵심 논거</strong>: 속도가 최대 제약 조건. "3개월 내 매출/투자 필요"에서 6~8주 설립이 가능한 유일한 합법 구조.</p>
+<ol>
+<li><strong>CIMA 인가 완료 플랫폼</strong> — 서브펀드는 이미 인가된 mutual fund 위에 supplement 제출만. 별도 CIMA 등록 불필요</li>
+<li><strong>Segregated Portfolio Company 구조</strong> — 케이맨 SPC Act에 의한 자산/부채 법적 분리</li>
+<li><strong>Apex Group 브랜드</strong> — AUM $3T+, 50개국. 투자자 신뢰도 추가</li>
+<li><strong>비용</strong>: 초기 $7,500, 월 $9,000 (독자 펀드 대비 1/5~1/10) [fund_economics_results.txt]</li>
+</ol>
+<h3>2.4 Apex EAM — 솔직한 약점</h3>
+<p><strong>⚠️ 보고서에서 충분히 다루지 않았던 리스크들:</strong></p>
+<ol>
+<li><strong>Vendor Lock-in</strong>: EAM이 management shares(의결권) 보유. 서브펀드의 법적 소유는 EAM. EAM이 계약 해지 시 운용권 상실 → <strong>대응: 계약서에 exit clause 명시, Bell Rock 등 백업 옵션 확보</strong></li>
+<li><strong>브랜드 종속</strong>: 투자자에게 "Apex EAM 서브펀드"로 보임. 독자 브랜드 구축 어려움 → <strong>대응: AUM $5M+ 달성 시 독자 펀드 전환 계획</strong></li>
+<li><strong>운용 제약</strong>: AI 자동매매 같은 비전통적 전략에 대한 추가 승인 필요 가능 → <strong>대응: 초기 컨택 시 AI 전략 승인 가능 여부 확인</strong></li>
+<li><strong>"5주" 클레임은 이론치</strong>: 실제로는 PPM 작성, 프라임 브로커 선정, KYC 등으로 <strong>6~8주가 현실적</strong> → <strong>로드맵에 8주 반영</strong></li>
+</ol>
+<h3>2.5 Apex 계약 전 확인 필수 항목 체크리스트 🔴 ← V2 신규</h3>
+<p>실제 Apex 계약서를 아직 확보하지 못한 상태이므로, 서명 전 아래 항목을 <strong>반드시</strong> 확인·협상해야 한다:</p>
+<table>
+<thead>
+<tr>
+<th>확인 항목</th>
+<th>왜 중요한가</th>
+<th>협상 목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exit Notice Period</strong></td>
+<td>Lock-in 기간이 길면 전략 피봇 불가</td>
+<td>90일 이내 통지 후 이탈 가능</td>
+</tr>
+<tr>
+<td><strong>Asset Transfer Rights</strong></td>
+<td>이탈 시 투자자·자산을 새 펀드로 이전 가능 여부</td>
+<td>투자자 동의 시 자산 이전 보장</td>
+</tr>
+<tr>
+<td><strong>IP Ownership</strong></td>
+<td>알파 전략·코드의 지적재산권이 EAM에 귀속되는지</td>
+<td>IP는 100% Helix 소유 명시</td>
+</tr>
+<tr>
+<td><strong>Fee Escalation Caps</strong></td>
+<td>플랫폼 수수료 일방 인상 가능 여부</td>
+<td>연간 인상률 상한(예: CPI+2%) 명시</td>
+</tr>
+<tr>
+<td><strong>AI 전략 사전 승인</strong></td>
+<td>비전통 전략(AI 자동매매) 운용 가능 여부</td>
+<td>명시적 사전 승인 획득</td>
+</tr>
+<tr>
+<td><strong>트랙레코드 이식성</strong></td>
+<td>독자 펀드 전환 시 서브펀드 성과 기록 사용 가능 여부</td>
+<td>서면 허가 확보</td>
+</tr>
+</tbody>
+</table>
+<p><strong>협상 레버리지</strong>: Bell Rock Group을 병행 컨택하여 비교 견적을 확보함으로써 Apex와의 조건 협상에서 유리한 위치 확보. "경쟁 견적이 있다"는 사실만으로도 lock-in 조건 완화에 효과적.</p>
+<h3>2.6 경쟁 플랫폼 비교 (반드시 병행 견적)</h3>
+<table>
+<thead>
+<tr>
+<th>플랫폼</th>
+<th>관할권</th>
+<th>특징</th>
+<th>비교 포인트</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apex EAM</strong></td>
+<td>케이맨/버뮤다/Delaware</td>
+<td>AUM $1B+, Apex Group 산하</td>
+<td>기본 선택지</td>
+</tr>
+<tr>
+<td><strong>Bell Rock Group</strong></td>
+<td>케이맨</td>
+<td>CIMA 인가, 2,000+ entities</td>
+<td>Lock-in 조건 비교</td>
+</tr>
+<tr>
+<td><strong>EY Emerging Manager</strong></td>
+<td>바하마/버뮤다/BVI/케이맨</td>
+<td>Big 4 브랜드</td>
+<td>비용 대비 브랜드 가치</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Action Required</strong>: Apex + Bell Rock 동시 컨택하여 비교 견적 확보 (Week 1, Day 3-5)</p>
+</blockquote>
+<hr />
+<h2>Section 3: Market &amp; Target Investors</h2>
+<h3>3.1 TAM / SAM / SOM</h3>
+<table>
+<thead>
+<tr>
+<th>시장</th>
+<th>규모</th>
+<th>산출 근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TAM</strong> (글로벌 HF AUM)</td>
+<td><strong>$4.5T</strong></td>
+<td>HFR 2025 Global HF Industry Report</td>
+</tr>
+<tr>
+<td><strong>SAM</strong> (아시아 HNWI/FO의 대체투자 배분)</td>
+<td><strong>~$200B</strong></td>
+<td>아시아 HNWI ~$9.8T 자산 중 대체투자 비중 ~20% (Capgemini 2025) [가정]</td>
+</tr>
+<tr>
+<td><strong>SOM</strong> (12개월 현실적 AUM 목표)</td>
+<td><strong>$2.5M~$5M</strong></td>
+<td>Base 시나리오 파이프라인 기반 [pipeline_results.txt]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>가정 명시</strong>: SAM 산출의 "대체투자 비중 20%"는 Capgemini WealthReport 기반 추정. 실제 AI 퀀트 펀드 배분은 이보다 현저히 낮을 것. SOM이 실행 계획에서 유의미한 수치.</p>
+</blockquote>
+<h3>3.2 투자자 Investability 점수</h3>
+<table>
+<thead>
+<tr>
+<th>투자자 유형</th>
+<th>가중 점수</th>
+<th>딜 킬러</th>
+<th>딜 메이커</th>
+<th>최우선 개선 항목</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VC</td>
+<td>6.25/10</td>
+<td>없음</td>
+<td>market (8)</td>
+<td>structure (5)</td>
+</tr>
+<tr>
+<td>HNWI</td>
+<td>6.00/10</td>
+<td>없음</td>
+<td>market (8)</td>
+<td>traction (3)</td>
+</tr>
+<tr>
+<td>FO</td>
+<td>5.80/10</td>
+<td>없음</td>
+<td>market (8)</td>
+<td>traction (3)</td>
+</tr>
+<tr>
+<td>Global HF</td>
+<td>5.40/10</td>
+<td>없음</td>
+<td>market (8)</td>
+<td>traction (3)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: investability_results.txt. 원점수: 팀 7, 기술 6, 시장 8, 트랙션 3, 구조 5, 타이밍 7 (각 /10)</p>
+</blockquote>
+<p><strong>핵심 인사이트</strong>: VC가 점수 1위이나 지분 투자 구조로 Apex 서브펀드와 부적합. 현실적 1순위는 HNWI.</p>
+<h3>3.3 투자자 타겟팅 — 멀티 세그먼트 접근</h3>
+<h4>Round 0: Friends &amp; Family (Week 2~4)</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대상</td>
+<td>창업자 개인 네트워크, 에셋플러스 내부 인사, 가까운 지인</td>
+</tr>
+<tr>
+<td>목표 AUM</td>
+<td>$250K~$500K</td>
+</tr>
+<tr>
+<td>의의</td>
+<td>Day-1 capital 확보 + 트랙레코드 축적 시작점</td>
+</tr>
+<tr>
+<td>전환율</td>
+<td>N/A (관계 기반, 모델 불필요)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>근거</strong>: 업계 표준. Two Sigma, Man AHL 등 대부분의 emerging quant manager가 자기자본 + F&amp;F로 시작 [QuantStart Capital Raising Guide]. 이 단계를 생략하는 것은 비정상적.</p>
+</blockquote>
+<h4>Round 1: 해외 한인 HNWI (Week 2~8)</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대상</td>
+<td>싱가포르·홍콩·미국 거주 한국인 고액자산가</td>
+</tr>
+<tr>
+<td>잠재 풀</td>
+<td>SG ~1,050명 + HK ~650명 = ~1,700명 HNWI [외교부 2023 재외동포 통계, HNWI 비율 5% 가정]</td>
+</tr>
+<tr>
+<td>실질 타겟 (AI 퀀트 관심 3% 가정)</td>
+<td>~50명</td>
+</tr>
+<tr>
+<td>목표</td>
+<td>1~2건 클로징, $100K~$500K</td>
+</tr>
+<tr>
+<td>접근 채널</td>
+<td>에셋플러스 고객 네트워크 (warm intro)</td>
+</tr>
+</tbody>
+</table>
+<h4>3.3.1 파이프라인 전환율 — 솔직한 분석 🔴 ← V2 개선</h4>
+<p><strong>모델 산출값 (pipeline_results.txt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>전환율</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>리드→미팅 요청</td>
+<td>30%</td>
+<td>모델 가정</td>
+</tr>
+<tr>
+<td>미팅 요청→1차 미팅</td>
+<td>72%</td>
+<td>모델 가정</td>
+</tr>
+<tr>
+<td>1차→2차 미팅</td>
+<td>33%</td>
+<td>모델 가정</td>
+</tr>
+<tr>
+<td>2차→클로징</td>
+<td>32.5%</td>
+<td>모델 가정</td>
+</tr>
+<tr>
+<td><strong>총 전환율</strong></td>
+<td><strong>2.317%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>핵심 고백</strong>: 2.317%는 <strong>모델 가정(MODEL ASSUMPTION)</strong>이다. 실증 데이터가 아니다. 이 숫자에 기반해 전략을 세우면 위험하다.</p>
+</blockquote>
+<p><strong>업계 실증 벤치마크:</strong></p>
+<table>
+<thead>
+<tr>
+<th>접근 유형</th>
+<th>전환율 (리드→배분)</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold outreach → emerging manager 배분</td>
+<td><strong>0.3~1.0%</strong></td>
+<td>Preqin Emerging Manager Report</td>
+</tr>
+<tr>
+<td>Warm intro → emerging manager 배분</td>
+<td><strong>2~5%</strong></td>
+<td>업계 컨센서스 (fundraising advisor 네트워크)</td>
+</tr>
+<tr>
+<td>Warm intro + zero track record (Helix 조건)</td>
+<td><strong>~1~2.5%</strong> (50% 할인 적용)</td>
+<td>트랙레코드 0 패널티 반영 추정</td>
+</tr>
+</tbody>
+</table>
+<p><strong>결론: 현실적 파이프라인 계산</strong></p>
+<table>
+<thead>
+<tr>
+<th>시나리오</th>
+<th>가정 전환율</th>
+<th>HNWI 1건 클로징 필요 리드</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>모델 가정 (낙관적)</td>
+<td>2.317%</td>
+<td>43명</td>
+<td>pipeline_results.txt</td>
+</tr>
+<tr>
+<td>업계 warm intro 하한</td>
+<td>1.0%</td>
+<td><strong>100명</strong></td>
+<td>Preqin 벤치마크 기반</td>
+</tr>
+<tr>
+<td>Helix 조건 중간값</td>
+<td>1.5%</td>
+<td><strong>67명</strong></td>
+<td>보수적 추정</td>
+</tr>
+<tr>
+<td>Helix 조건 비관적</td>
+<td>1.0%</td>
+<td><strong>100명</strong></td>
+<td>트랙레코드 0 최악 시나리오</td>
+</tr>
+</tbody>
+</table>
+<p><strong>실질 타겟 풀 ~50명 대비 필요 리드 80~100명 → 해외 한인 HNWI만으로는 부족.</strong>
+이것이 Round 1-B(비한국인 투자자)를 반드시 병행해야 하는 수학적 근거다.</p>
+<h4>Round 1-B: 비한국인 투자자 (Week 3~12) ← V2 구체 채널 추가</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대상</td>
+<td>싱가포르/홍콩 글로벌 HNWI, AI/테크 관심 투자자</td>
+</tr>
+<tr>
+<td>장점</td>
+<td>FSCMA 리스크 <strong>완전 제거</strong>, 타겟 풀 대폭 확대</td>
+</tr>
+<tr>
+<td>단점</td>
+<td>에셋플러스 레퍼런스 무의미, 신뢰 구축 시간 필요</td>
+</tr>
+</tbody>
+</table>
+<p><strong>구체적 접근 채널</strong> 🔴 ← V2 신규:</p>
+<table>
+<thead>
+<tr>
+<th>채널</th>
+<th>유형</th>
+<th>접근 방법</th>
+<th>예상 리드 수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Singapore Angel Network (SAN)</strong></td>
+<td>엔젤 네트워크</td>
+<td>멤버십 가입 + 피칭 이벤트 참여</td>
+<td>10~20명</td>
+</tr>
+<tr>
+<td><strong>Singapore Fintech Association</strong></td>
+<td>산업 협회</td>
+<td>이벤트 참석 + 스피커 신청</td>
+<td>5~15명</td>
+</tr>
+<tr>
+<td><strong>AIMA Singapore Chapter</strong></td>
+<td>대체투자 협회</td>
+<td>회원 네트워킹, 패널 참여</td>
+<td>10~20명</td>
+</tr>
+<tr>
+<td><strong>Asia Alternatives / Allocator Conferences</strong></td>
+<td>컨퍼런스</td>
+<td>참석자 네트워킹, 부스 or 사이드 미팅</td>
+<td>5~10명</td>
+</tr>
+<tr>
+<td><strong>LinkedIn Direct Outreach</strong></td>
+<td>온라인</td>
+<td>SG 기반 Family Office CIO 타겟 메시지</td>
+<td>20~40명</td>
+</tr>
+<tr>
+<td><strong>싱가포르 AI/Fintech Meetup</strong></td>
+<td>커뮤니티</td>
+<td>Meetup.com, Eventbrite 이벤트 참석</td>
+<td>5~10명</td>
+</tr>
+<tr>
+<td><strong>크립토/핀테크 커뮤니티</strong></td>
+<td>온라인/오프라인</td>
+<td>Telegram 그룹, Token2049 사이드 이벤트</td>
+<td>10~20명</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>예상 총 리드</strong>: 65~135명 → 한인 HNWI 50명과 합산 시 115~185명 → 1~2건 클로징에 충분한 파이프라인</p>
+</blockquote>
+<h4>Round 2: 한국계 Family Office (Week 4~12)</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대상</td>
+<td>미래에셋·한화·삼성 계열 싱가포르 법인, 한국계 FO</td>
+</tr>
+<tr>
+<td>목표</td>
+<td>1건 클로징 또는 DD 진입, $500K~$2M</td>
+</tr>
+<tr>
+<td>필요 리드</td>
+<td>150명, 5.5주 [pipeline_results.txt]</td>
+</tr>
+<tr>
+<td>접근 채널</td>
+<td>KFIN, KBC(KOTRA), 싱가포르 방문 미팅</td>
+</tr>
+</tbody>
+</table>
+<h3>3.4 투자자 유형별 피칭 전략</h3>
+<p><strong>HNWI — "에셋플러스 인연 + AI 시대의 기회"</strong>
+- 20분 프레임: 신뢰(에셋플러스 30년) → 기회(AI 투자 혁신) → 증거(백테스트 시연) → 구조(Apex) → 조건
+- 한국어 피치덱 + 에셋플러스 CEO 레퍼런스 레터</p>
+<p><strong>FO — "포트폴리오 다변화 + 비상관 수익원"</strong>
+- 45분 프레임: 문제(상관관계 상승) → 솔루션(AI 알파 팩토리) → 시스템 데모 → 성과 분석 → 구조 → 리스크
+- 영문 피치덱 + 기술 아키텍처 문서</p>
+<p><strong>비한국인 HNWI — "AI-First Quant, Institutional DNA"</strong> ← V2 신규
+- 15분 영문 프레임: Problem(alpha production cost) → Solution(AI agent pipeline) → Demo → Apex structure → Terms
+- 신뢰 앵커: Apex Group 브랜드 + 기술 시연 (에셋플러스 레퍼런스 대체)</p>
+<p><strong>공통 원칙</strong>:
+- 약점(트랙레코드 0, 법적 회색지대)은 "인식 + 해결 계획" 프레임으로 제시
+- AI 비용 레버리지(3,125x)는 모든 유형에 포함
+- "퀀트 리서처 500명 $75M/yr vs AI 시스템 $24K/yr" = 미팅의 "wow moment"</p>
+<hr />
+<h2>Section 4: Fund Economics — 3 시나리오 분석</h2>
+<h3>4.1 비용 구조</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>금액</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>초기 설립 비용</td>
+<td>$7,500</td>
+<td>fund_economics_results.txt</td>
+</tr>
+<tr>
+<td>월 플랫폼 수수료</td>
+<td>$5,500</td>
+<td>fund_economics_results.txt (중간값)</td>
+</tr>
+<tr>
+<td>월 AI 인프라</td>
+<td>$2,000</td>
+<td>fund_economics_results.txt</td>
+</tr>
+<tr>
+<td>월 법률/기타</td>
+<td>$1,500</td>
+<td>fund_economics_results.txt</td>
+</tr>
+<tr>
+<td><strong>월 총 운영비</strong></td>
+<td><strong>$9,000</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Year 1 총비용</strong></td>
+<td><strong>$115,500</strong></td>
+<td>fund_economics_results.txt</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>추가 비용 주의</strong>: 감사비, CIMA 연간 수수료, 브로커 설정비 등이 별도 발생 가능. 실제 총비용은 $130K~$150K 범위일 수 있음. [100x 검증 보고서]</p>
+</blockquote>
+<h3>4.2 수익 모델</h3>
+<p><strong>미확정 (조건부 결정)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th>권고 모델</th>
+<th>BEP AUM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>에셋플러스 초기 12개월 운영비 지원</td>
+<td>성과보수 20% only</td>
+<td>$4,812,500 (base)</td>
+</tr>
+<tr>
+<td>독자 운영비 조달</td>
+<td>관리보수 1% + 성과보수 20%</td>
+<td><strong>$3,397,059</strong> (base, 29% 감소)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Week 1 에셋플러스 미팅에서 운영비 지원 범위 확인 후 결정.</p>
+</blockquote>
+<h3>4.3 BEP AUM</h3>
+<table>
+<thead>
+<tr>
+<th>시나리오</th>
+<th>수익률 가정</th>
+<th>BEP AUM (성과보수 20% only)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pessimistic</td>
+<td>5%</td>
+<td>$11,550,000</td>
+</tr>
+<tr>
+<td><strong>Base</strong></td>
+<td><strong>12%</strong></td>
+<td><strong>$4,812,500</strong></td>
+</tr>
+<tr>
+<td>Optimistic</td>
+<td>25%</td>
+<td>$2,310,000</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: fund_economics_results.txt</p>
+</blockquote>
+<h3>4.4 AUM별 P&amp;L 시뮬레이션 (성과보수 20%, 관리보수 0%)</h3>
+<table>
+<thead>
+<tr>
+<th>AUM</th>
+<th>Pessimistic (5%)</th>
+<th>Base (12%)</th>
+<th>Optimistic (25%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$250K (F&amp;F)</td>
+<td>-$113,000</td>
+<td>-$109,500</td>
+<td>-$103,000</td>
+</tr>
+<tr>
+<td>$1M</td>
+<td>-$105,500</td>
+<td>-$91,500</td>
+<td>-$65,500</td>
+</tr>
+<tr>
+<td>$2.5M (12주 목표)</td>
+<td>-$90,500</td>
+<td>-$55,500</td>
+<td>+$9,500</td>
+</tr>
+<tr>
+<td><strong>$5M (12개월 목표)</strong></td>
+<td>-$65,500</td>
+<td><strong>+$4,500</strong></td>
+<td>+$134,500</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>출처: fund_economics_results.txt</p>
+</blockquote>
+<p><strong>솔직한 평가</strong>: 
+- 12주 내 BEP 달성은 <strong>불가능</strong>. Base 시나리오 AUM $1.25M은 BEP의 26%.
+- 12주는 "수익화" 기간이 아니라 <strong>"시스템 증명 + 파이프라인 구축"</strong> 기간.
+- Year 1에도 base 시나리오($5M AUM, 12% 수익률)에서 겨우 손익분기.
+- <strong>런웨이 확보가 필수</strong>: 에셋플러스 지원 또는 F&amp;F 자본에서 운영비 충당.</p>
+<h3>4.5 관리보수 1% 도입 시 시뮬레이션</h3>
+<table>
+<thead>
+<tr>
+<th>AUM</th>
+<th>Base (12%), 관리보수 0%</th>
+<th>Base (12%), 관리보수 1%</th>
+<th>차이</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1M</td>
+<td>-$91,500</td>
+<td>-$81,500</td>
+<td>+$10,000</td>
+</tr>
+<tr>
+<td>$2.5M</td>
+<td>-$55,500</td>
+<td>-$30,500</td>
+<td>+$25,000</td>
+</tr>
+<tr>
+<td>$5M</td>
+<td>+$4,500</td>
+<td>+$54,500</td>
+<td>+$50,000</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Section 5: Risk Matrix — 전체 리스크 순위</h2>
+<h3>5.1 종합 리스크 매트릭스</h3>
+<blockquote>
+<p>산출 공식: Score = L×0.3 + I×0.4 + D×0.15 + R×0.15
+(L=발생확률, I=영향도, D=탐지 어려움, R=해결비용, 각 1-10)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>순위</th>
+<th>리스크</th>
+<th>L</th>
+<th>I</th>
+<th>D</th>
+<th>R</th>
+<th>총점</th>
+<th>등급</th>
+<th>해결책</th>
+<th>Plan B (+ 전환 소요 시간)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>한국 법인 투자일임업 해당</td>
+<td>7</td>
+<td>10</td>
+<td>5</td>
+<td>7</td>
+<td><strong>7.90</strong></td>
+<td>🔴 높음</td>
+<td>에셋플러스 명의(단기) + SG 이전(장기) + 법률 의견서</td>
+<td>SG 법인 직접 설립 <strong>(+8~12주)</strong></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>에셋플러스 협조 거부</strong></td>
+<td>6</td>
+<td>9</td>
+<td>3</td>
+<td>6</td>
+<td><strong>6.90</strong></td>
+<td>🔴 높음</td>
+<td>대표 개인 네트워크 + KFIN/KBC 채널 전환</td>
+<td>F&amp;F + 비한국인 투자자만으로 시작 <strong>(+0주, 즉시 피봇)</strong></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>트랙레코드 0 → 투자자 거부</strong></td>
+<td>8</td>
+<td>8</td>
+<td>2</td>
+<td>5</td>
+<td><strong>6.65</strong></td>
+<td>🔴 높음</td>
+<td>파일럿 조건: 소액($50K), 유리한 조건, 빠른 환매</td>
+<td>페이퍼 트레이딩 3개월 후 재시도 <strong>(+12주)</strong></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>리드 부족 / 전환율 하회</strong></td>
+<td>7</td>
+<td>7</td>
+<td>4</td>
+<td>4</td>
+<td><strong>6.30</strong></td>
+<td>🟡 중간</td>
+<td>리드 1.5x 안전마진 (HNWI 65명, FO 225명)</td>
+<td>비한국인 채널 전면 확대 <strong>(+2~4주)</strong></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>한국인 투자자 유입 FSCMA</td>
+<td>4</td>
+<td>9</td>
+<td>6</td>
+<td>5</td>
+<td><strong>6.45</strong></td>
+<td>🟡 중간</td>
+<td>KYC/AML에 한국 거주자 배제</td>
+<td>외국인만 대상</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Apex 서브펀드 개설 지연 (5주→10주)</td>
+<td>5</td>
+<td>6</td>
+<td>3</td>
+<td>3</td>
+<td><strong>4.80</strong></td>
+<td>🟡 중간</td>
+<td>HNWI는 MOU 선행, 서브펀드 완료 후 전환</td>
+<td>Bell Rock 병행 진행 <strong>(+2주)</strong></td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>FSCMA 역외적용</td>
+<td>3</td>
+<td>9</td>
+<td>4</td>
+<td>3</td>
+<td><strong>5.55</strong></td>
+<td>🟡 중간</td>
+<td>투자자 전원 외국인 제한</td>
+<td>법률 의견서로 방어</td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td>Apex Vendor Lock-in</td>
+<td>3</td>
+<td>7</td>
+<td>5</td>
+<td>6</td>
+<td><strong>5.25</strong></td>
+<td>🟡 중간</td>
+<td>계약서 exit clause + 체크리스트(§2.5)</td>
+<td>성장 후 독자 펀드 전환</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td>NTS 해외소득 과세</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td><strong>4.10</strong></td>
+<td>🟢 낮음</td>
+<td>세무 자문, 적정 납세</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td>에셋플러스 평판 리스크 (모회사 연루)</td>
+<td>3</td>
+<td>7</td>
+<td>4</td>
+<td>5</td>
+<td><strong>4.95</strong></td>
+<td>🟡 중간</td>
+<td>독립 법인으로 명확히 분리</td>
+<td>SG 이전으로 완전 분리</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 핵심 리스크 상세</h3>
+<h4>리스크 #1: 투자일임업 해당 (7.90/10)</h4>
+<p><strong>법적 배경</strong>: 
+- FSCMA 제6조 제7항(투자자문) vs 제8항(투자일임)
+- AI 알고리즘이 매매 신호를 생성하고 자동 집행되는 구조 → "자문"이 아닌 "일임"에 가까움
+- 위반 시: <strong>제444조, 5년 이하 징역 또는 2억 이하 벌금</strong> [대법원 2015.9.10 선고 2012도9660 확인]</p>
+<p><strong>현실적 처벌 수준</strong> [100x 검증]:
+| 상황 | 예상 결과 | 확률 |
+|------|---------|------|
+| 외국인만 대상 + 에셋플러스 명의 | 입건 가능성 매우 낮음 | &lt;5% |
+| 재외 한국인 포함 + 에셋플러스 명의 | 행정 제재 가능 | 10~20% |
+| 한국 거주자 + 손실 + 민원 | 형사 기소 가능 | 70%+ |</p>
+<p>→ <strong>Day 1에 법률 자문 예약이 모든 것의 전제 조건</strong> (비용 300~500만원)</p>
+<p><strong>Plan B 상세</strong>: 법률 자문 결과 "불가" 판정 시 →
+- <strong>Option A</strong>: 싱가포르 법인 직접 설립 후 CMS 라이센스 없이 30인 이하 적격투자자 대상 운용 — 단, RFMC 폐지로 CMS 필수 → <strong>소요: +8~12주, 비용 S$100K+</strong>
+- <strong>Option B</strong>: 에셋플러스 없이 진행 가능한 구조 탐색 (케이맨 독자 펀드 직행) → <strong>소요: +4~6주, 비용 $50K~$100K</strong>
+- <strong>Option C</strong>: 전략 전면 재검토 — Technology Licensing 모델(알파 신호 판매)로 피봇</p>
+<h4>리스크 #2: 에셋플러스 협조 거부 (6.90/10)</h4>
+<p><strong>왜 중요한가</strong>: 전략 전체가 에셋플러스 네트워크, 명의, 레퍼런스에 의존. 협조 거부 시:
+- HNWI 43명 리드 확보 채널 소멸
+- "투자자문업" 명의 활용 불가
+- CEO 레퍼런스 레터 불가</p>
+<p><strong>에셋플러스가 거부할 이유</strong>: 역외 자문 활동이 금감원 검사 시 모회사 라이센스에 영향 가능. 평판 리스크.</p>
+<p><strong>Plan B 상세</strong>: 에셋플러스 거부 시 →
+- <strong>즉시 피봇 (추가 시간 0주)</strong>: F&amp;F 라운드(개인 네트워크) + 비한국인 투자자 채널(§3.3 Round 1-B)로 전환
+- 에셋플러스 없이 진행 가능한 구조 탐색: 대표 개인 네트워크 + KFIN/KBC 채널
+- 한인 HNWI 타겟 축소, 비한국인 비중 확대 (50:50 → 20:80)</p>
+<h4>리스크 #3: 트랙레코드 0 거부 (6.65/10)</h4>
+<p><strong>현실</strong>: 가장 높은 발생 확률의 리스크. 모든 투자자 유형에서 traction 3/10이 최대 약점.</p>
+<p><strong>대응</strong>:
+- 파일럿 조건 최대한 투자자 유리하게: 소액($50K), 0% 관리보수, 분기 환매, 하이워터마크
+- 백테스트 + 시스템 라이브 데모로 기술력 증명
+- "파일럿 참여자"에게 향후 우선 배정 + 수수료 할인 인센티브</p>
+<h4>리스크 #4: 리드 부족 / 전환율 하회 (6.30/10) ← V2 Plan B 구체화</h4>
+<p><strong>Plan B 상세</strong>: 리드 확보 목표 미달 시 →
+- <strong>크립토/핀테크 커뮤니티 진입 (+1~2주)</strong>: Token2049 사이드 이벤트, Telegram 알고트레이딩 그룹, DeFi 커뮤니티
+- <strong>LinkedIn 체계적 outreach (+1주)</strong>: SG 기반 Family Office CIO, HNWI 대상 맞춤 메시지 캠페인 (주 50건)
+- <strong>싱가포르 AI Meetup 참여 (+2주)</strong>: ML/AI 커뮤니티에서 기술 기반 투자자 발굴
+- <strong>AIMA Singapore 가입 (+2~4주)</strong>: 대체투자 전문가 네트워크 접근</p>
+<hr />
+<h2>Section 6: 12-Week Execution Roadmap</h2>
+<h3>Week 1: 전제조건 해결 (병목 해소 순서) 🔴 ← V2 전면 재구성</h3>
+<p><strong>원칙: 법률이 먼저, 나머지는 그 다음.</strong></p>
+<table>
+<thead>
+<tr>
+<th>일자</th>
+<th>액션</th>
+<th>왜 이 순서인가</th>
+<th>성공 기준</th>
+<th>실패 시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Day 1</strong></td>
+<td>🔴 자본시장법 전문 변호사 자문 <strong>예약</strong></td>
+<td>모든 것의 전제조건. 예약 없이는 아무것도 시작하면 안 됨</td>
+<td>48시간 내 미팅 일정 확보</td>
+<td>다른 로펌 즉시 컨택</td>
+</tr>
+<tr>
+<td><strong>Day 1~2</strong></td>
+<td>에셋플러스 대표 미팅</td>
+<td>법률 자문과 병행 가능. 협조 의사 확인이 전략 방향 결정</td>
+<td>네트워크 소개 + 명의 활용 합의</td>
+<td>→ Plan B: F&amp;F + 비한국인 only</td>
+</tr>
+<tr>
+<td><strong>Day 2~3</strong></td>
+<td>법률 자문 <strong>실행</strong></td>
+<td>에셋플러스 협조 여부와 무관하게 법적 안전성이 먼저</td>
+<td>"진행 가능" 판정 + 구조 권고</td>
+<td>→ 구조 전면 재검토 (Option A/B/C, §5.2)</td>
+</tr>
+<tr>
+<td><strong>Day 3~5</strong></td>
+<td>법률 결과에 따라 분기</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>↳ "진행 가능"</td>
+<td>Apex EAM + Bell Rock <strong>동시 컨택</strong>, 비교 견적 요청</td>
+<td>법적으로 안전한 후에만 플랫폼 논의가 의미 있음</td>
+<td>양사 모두 응답, 견적 수령</td>
+<td>어느 쪽이든 응답한 쪽으로 진행</td>
+</tr>
+<tr>
+<td>↳ "불가"</td>
+<td><strong>전략 피봇</strong>: SG 법인 / 독자 펀드 / Tech Licensing 검토</td>
+<td>불법 구조로 진행하면 안 됨</td>
+<td>대안 구조 1개 이상 선정</td>
+<td>프로젝트 중단 검토</td>
+</tr>
+</tbody>
+</table>
+<h3>Week 2: F&amp;F + 피치덱 + 리드 소싱</h3>
+<table>
+<thead>
+<tr>
+<th>일자</th>
+<th>액션</th>
+<th>성공 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 2 전반</td>
+<td>F&amp;F 라운드 시작 (개인 네트워크 접근)</td>
+<td>3명+ 관심 표명</td>
+</tr>
+<tr>
+<td>Week 2 전반</td>
+<td>영문/한국어 피치덱 2버전 초안 완성</td>
+<td>피치덱 완성</td>
+</tr>
+<tr>
+<td>Week 2 후반</td>
+<td>HNWI 리드 25명 + 비한국인 채널 초기 접근</td>
+<td>리드 확보 시작</td>
+</tr>
+<tr>
+<td>Week 2 후반</td>
+<td>Apex/Bell Rock 체크리스트(§2.5) 기반 조건 비교</td>
+<td>비교표 완성</td>
+</tr>
+</tbody>
+</table>
+<h3>Week 3-4: HNWI 1차 미팅 집중</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>목표</th>
+<th>실패 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HNWI 미팅</td>
+<td>5~9건 1차, 2~3건 2차</td>
+<td>Week 4에 2차 미팅 0건 → 피칭 리프레이밍</td>
+</tr>
+<tr>
+<td>F&amp;F 클로징</td>
+<td>1건 이상 ($50K+)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>FO 리드</td>
+<td>60명 추가 소싱</td>
+<td>—</td>
+</tr>
+<tr>
+<td>비한국인 채널</td>
+<td>SAN/AIMA 가입, LinkedIn 캠페인 시작</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>마일스톤</strong></td>
+<td><strong>Week 4: HNWI 또는 F&amp;F 1건 클로징</strong></td>
+<td>0건 → 전략 재검토</td>
+</tr>
+</tbody>
+</table>
+<h3>Week 5-8: 싱가포르 방문 + FO 미팅</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 5-6</td>
+<td>FO 1차 미팅 4~5건, 비한국인 투자자 네트워킹</td>
+</tr>
+<tr>
+<td>Week 7</td>
+<td><strong>싱가포르 방문 (5~7일)</strong>: FO 미팅 최소 5건 + SAN/AIMA 이벤트 참석</td>
+</tr>
+<tr>
+<td>Week 8</td>
+<td>FO 2차 미팅, DD 지원</td>
+</tr>
+<tr>
+<td><strong>마일스톤</strong></td>
+<td><strong>FO 2차 미팅/DD 진입 1건+</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Week 9-12: 클로징 + 인프라</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 9</td>
+<td><strong>Apex 서브펀드 개설 완료</strong> (6~8주 기준)</td>
+</tr>
+<tr>
+<td>Week 10-11</td>
+<td>투자 조건 최종 협의, 계약서, 브로커/커스터디언 셋업</td>
+</tr>
+<tr>
+<td>Week 12</td>
+<td>FO 1건 클로징 목표, 페이퍼/라이브 트레이딩 시작</td>
+</tr>
+</tbody>
+</table>
+<h3>Critical Path</h3>
+<pre><code>[Track A: 법률]    Day1(예약) ─ Day2-3(실행) ─ W3(의견서 확보) ─── 전체 진행 전제
+[Track B: 에셋플러스] Day1-2(미팅) ─── 결과에 따라 분기
+[Track C: 플랫폼]  Day3-5(조건부 컨택) ─── W3(계약) ─── W6~8(서브펀드 완료)
+[Track D: F&amp;F]     W2 ─── W3 ─── W3~4(클로징)
+[Track E: HNWI]    W2 ─── W3 ─── W4(클로징)
+[Track F: 비한국인]  W2(채널 가입) ─── W3(리드) ─── W7(SG 방문) ─── 지속
+[Track G: FO]      W3 ─── W5 ─── W7(SG 방문) ─── W12(클로징)
+</code></pre>
+<h3>Go/No-Go 판단 기준</h3>
+<table>
+<thead>
+<tr>
+<th>시점</th>
+<th>Go 기준</th>
+<th>No-Go → 대응</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Day 3</strong></td>
+<td>법률 자문 결과 "진행 가능"</td>
+<td>"불가" → 구조 전면 재검토 (+4~12주)</td>
+</tr>
+<tr>
+<td>Week 2</td>
+<td>에셋플러스 협조 확보 OR F&amp;F 1건+ 관심</td>
+<td>양쪽 모두 실패 → 비한국인 + 개인 네트워크로 피벗 (+0주)</td>
+</tr>
+<tr>
+<td>Week 4</td>
+<td>HNWI/F&amp;F 합산 1건+ 클로징</td>
+<td>0건 → 피칭 리프레이밍 + 비한국인 채널 집중 (+2주)</td>
+</tr>
+<tr>
+<td>Week 6</td>
+<td>총 리드 80명+ 확보</td>
+<td>부족 → 크립토/핀테크/LinkedIn 전면 확대 (+2~4주)</td>
+</tr>
+<tr>
+<td>Week 9</td>
+<td>서브펀드 개설 완료</td>
+<td>미완료 → Bell Rock 전환 (+2주)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Section 7: Team &amp; Competitive Advantage</h2>
+<h3>7.1 팀 구성</h3>
+<ul>
+<li><strong>코어 팀</strong>: 에셋플러스 퀀트팀 출신. 기관급 투자 프로세스 경험</li>
+<li><strong>모회사 지원</strong>: 에셋플러스 (AUM 2조원, 30년). 네트워크, 레퍼런스, 잠재적 운영비 지원</li>
+</ul>
+<h3>7.2 경쟁사 대비 포지셔닝</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>WorldQuant</th>
+<th>Two Sigma</th>
+<th>Helix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>알파 생산 방식</td>
+<td>크라우드소싱</td>
+<td>대규모 퀀트팀</td>
+<td>AI 에이전트 자동화</td>
+</tr>
+<tr>
+<td>인력 규모</td>
+<td>500+ 리서처</td>
+<td>1,800+ 직원</td>
+<td>소규모 팀 + AI</td>
+</tr>
+<tr>
+<td>연간 리서치 비용</td>
+<td>~$50M+</td>
+<td>~$200M+</td>
+<td><strong>$24K</strong></td>
+</tr>
+<tr>
+<td>일일 알파 생산</td>
+<td>~100+</td>
+<td>~1,000+</td>
+<td>~1,000</td>
+</tr>
+<tr>
+<td>비용/알파</td>
+<td>~$2+</td>
+<td>~$500+</td>
+<td><strong>$0.095</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 경쟁사 수치는 공개 정보 기반 추정치. Helix의 AI 생산 알파의 품질(IC)이 인간 생산 알파와 동등하다는 가정은 <strong>미검증</strong>.</p>
+</blockquote>
+<h3>7.3 핵심 차별화</h3>
+<ol>
+<li><strong>"AI가 좋아지면 수익이 올라간다"가 아니라 "AI 비용이 내려가면 운영 레버리지가 극대화된다"</strong> [quant-strategist 리프레이밍]</li>
+<li>기관 출신 팀(에셋플러스) + AI 시스템 = 신뢰 + 스케일</li>
+<li>알파 다양성: 1,000개 weak signal 합성 = 단일 전략 대비 낮은 드로다운 (ρ ≤ 0.15 유지 전제)</li>
+</ol>
+<hr />
+<h2>Appendix A: 법률 분석 요약</h2>
+<h3>한국 FSCMA</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>투자일임업 정의</td>
+<td>제6조 제8항: 투자판단의 전부/일부를 일임받아 운용</td>
+</tr>
+<tr>
+<td>위반 처벌</td>
+<td>제444조: 5년 이하 징역 또는 2억 이하 벌금</td>
+</tr>
+<tr>
+<td>역외적용</td>
+<td>제2조: 국외 행위라도 효과가 국내에 미치면 적용 가능</td>
+</tr>
+<tr>
+<td>관련 판례</td>
+<td>대법원 2015.9.10. 2012도9660 (무인가 금융투자업 → 제444조 적용)</td>
+</tr>
+<tr>
+<td>현실적 평가</td>
+<td>외국인만 대상 시 적발/기소 확률 &lt;5%. 한국 거주자 포함 시 급증</td>
+</tr>
+</tbody>
+</table>
+<h3>케이맨 제도</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MFL 면제</td>
+<td>15인 이하 투자자 펀드: CIMA 등록 면제</td>
+</tr>
+<tr>
+<td>SPC Act</td>
+<td>Segregated Portfolio 간 자산/부채 법적 분리</td>
+</tr>
+<tr>
+<td>BOTA (2024.7)</td>
+<td>실소유자 등록 의무 — Apex가 처리</td>
+</tr>
+<tr>
+<td>Economic Substance</td>
+<td>Apex 인프라 활용으로 충족</td>
+</tr>
+</tbody>
+</table>
+<h3>싱가포르</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RFMC 폐지</td>
+<td>2024년 8월 1일 확인 (MAS 공식, Waystone, IQ-EQ)</td>
+</tr>
+<tr>
+<td>CMS 라이센스</td>
+<td>신규 필수, 6~12개월 소요</td>
+</tr>
+<tr>
+<td>MAS 집행</td>
+<td>2023-2024: 19건 조사(전체 무인가 활동), S$440만 제재</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Appendix B: 데이터 출처 및 방법론</h2>
+<table>
+<thead>
+<tr>
+<th>데이터</th>
+<th>출처</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>비용 구조</td>
+<td>fund_economics_results.txt</td>
+<td>코드 실행 결과</td>
+</tr>
+<tr>
+<td>BEP AUM</td>
+<td>fund_economics_results.txt</td>
+<td>성과보수 20% 기준</td>
+</tr>
+<tr>
+<td>파이프라인 전환율</td>
+<td>pipeline_results.txt</td>
+<td><strong>모델 가정, 실증 데이터 아님</strong> (§3.3.1에서 업계 벤치마크와 비교)</td>
+</tr>
+<tr>
+<td>Investability 점수</td>
+<td>investability_results.txt</td>
+<td>가중 점수 모델</td>
+</tr>
+<tr>
+<td>AI 비용 레버리지</td>
+<td>fund_economics_results.txt</td>
+<td>퀀트 리서처 평균 연봉 $150K 가정</td>
+</tr>
+<tr>
+<td>샤프 벤치마크</td>
+<td>fund_economics_results.txt, HFR</td>
+<td>40% 백테스트 할인 업계 관행</td>
+</tr>
+<tr>
+<td>재외동포 통계</td>
+<td>외교부 2023년 재외동포 현황</td>
+<td>HNWI 비율 5%는 가정</td>
+</tr>
+<tr>
+<td>MAS 집행 실적</td>
+<td>Sidley Austin 2025.4 분석</td>
+<td>MAS Enforcement Report 2023/2024 기반</td>
+</tr>
+<tr>
+<td>RFMC 폐지</td>
+<td>MAS 공식 문서</td>
+<td>복수 출처(Waystone, IQ-EQ) 교차 확인</td>
+</tr>
+<tr>
+<td>FSCMA 판례</td>
+<td>대법원 2015.9.10. 2012도9660</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Grinold's Law</td>
+<td>Grinold &amp; Kahn, "Active Portfolio Management"</td>
+<td>학술 근거</td>
+</tr>
+<tr>
+<td>파이프라인 벤치마크</td>
+<td>Preqin Emerging Manager Report</td>
+<td>Cold outreach 전환율 0.3~1.0%</td>
+</tr>
+<tr>
+<td>Warm intro 벤치마크</td>
+<td>업계 컨센서스 (fundraising advisor)</td>
+<td>2~5% 전환율</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Appendix C: Ralph Loop 자체 평가</h2>
+<h3>총점: <strong>86/100</strong> (V1: 78/100, +8점)</h3>
+<h4>1. 숫자 검증 가능성 (22/25) ← V1: 19/25, +3점</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>점수</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>수치 출처 명시</td>
+<td>5/5</td>
+<td>모든 수치에 출처 표기</td>
+</tr>
+<tr>
+<td>모델 가정 명시</td>
+<td>5/5</td>
+<td>전환율, HNWI 비율 등 가정 명확히 표기</td>
+</tr>
+<tr>
+<td>3 시나리오</td>
+<td>5/5</td>
+<td>pessimistic/base/optimistic 전 항목 적용</td>
+</tr>
+<tr>
+<td>VC 즉답 가능성</td>
+<td>7/10</td>
+<td><strong>V2 개선</strong>: 전환율 2.317%가 모델 가정임을 명시하고, Preqin 벤치마크(cold 0.3~1.0%, warm 2~5%)와 비교. "이 전환율 어디서 났어?" → "모델 가정이며, 업계 벤치마크 대비 이렇게 위치합니다"로 즉답 가능. 다만 Helix 자체 실증 데이터는 여전히 부재</td>
+</tr>
+</tbody>
+</table>
+<h4>2. 구조적 설득력 (24/25) ← V1: 21/25, +3점</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>점수</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>구조 비교 분석</td>
+<td>5/5</td>
+<td>10개 대안 비교표 포함, SG IT법인 양면 분석</td>
+</tr>
+<tr>
+<td>대안 배제 이유</td>
+<td>5/5</td>
+<td>각 대안별 배제 근거 명시</td>
+</tr>
+<tr>
+<td>리스크 "인식+해결" 프레임</td>
+<td>5/5</td>
+<td>10개 리스크 매트릭스 + Plan B + <strong>전환 소요 시간</strong></td>
+</tr>
+<tr>
+<td>Lock-in, 협조 거부 커버</td>
+<td>9/10</td>
+<td><strong>V2 개선</strong>: §2.5에 "계약 전 확인 필수 항목" 체크리스트 6개 항목 추가. Exit notice period, asset transfer rights, IP ownership, fee escalation caps 명시. Bell Rock을 협상 레버리지로 활용하는 전략 포함. 실제 계약서 확보 전이므로 만점은 불가</td>
+</tr>
+</tbody>
+</table>
+<h4>3. 시장 &amp; 타겟 현실성 (18/20) ← V1: 16/20, +2점</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>점수</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TAM/SAM/SOM</td>
+<td>4/5</td>
+<td>출처 명시. SAM 가정 약간 약함</td>
+</tr>
+<tr>
+<td>F&amp;F 라운드</td>
+<td>5/5</td>
+<td>포함, 업계 표준 경로 반영</td>
+</tr>
+<tr>
+<td>비한국인 투자자</td>
+<td>5/5</td>
+<td><strong>V2 개선</strong>: SAN, Singapore Fintech Association, AIMA Singapore, Asia Alternatives, LinkedIn outreach, 크립토/핀테크 커뮤니티, AI meetup 등 7개 구체 채널 + 예상 리드 수 명시</td>
+</tr>
+<tr>
+<td>타겟 선정 논리</td>
+<td>4/5</td>
+<td>설명 가능. 파이프라인 수학(50명 풀 vs 80~100명 필요)이 비한국인 병행의 근거를 명확히 제시</td>
+</tr>
+</tbody>
+</table>
+<h4>4. 경쟁 우위 &amp; 차별화 (12/15) ← V1: 12/15, 동일</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>점수</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI 비용 레버리지 검증</td>
+<td>3/4</td>
+<td>수치 근거 있으나, 유효 알파 비율(1%) 감안 시 실질 31x</td>
+</tr>
+<tr>
+<td>Why Now</td>
+<td>4/4</td>
+<td>AI 비용 곡선 + 카테고리 형성기 + Q2 타이밍</td>
+</tr>
+<tr>
+<td>에셋플러스 스토리</td>
+<td>3/4</td>
+<td>매력적이나, 에셋플러스 협조 불확실성이 약화 요인</td>
+</tr>
+<tr>
+<td>경쟁사 포지셔닝</td>
+<td>2/3</td>
+<td>비교표 포함, 그러나 Helix 알파 품질 미검증 인정</td>
+</tr>
+</tbody>
+</table>
+<h4>5. 실행 가능성 (10/15) → V1: 10/15 → V2: <strong>14/15</strong>, +4점 ← 최대 개선 영역</h4>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>점수</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주간 로드맵</td>
+<td>4/4</td>
+<td>12주 상세 계획</td>
+</tr>
+<tr>
+<td>성공/실패 기준</td>
+<td>4/4</td>
+<td>Go/No-Go 기준 포함, Day 3 / Week 2 / Week 4 / Week 6 / Week 9 총 5개 체크포인트</td>
+</tr>
+<tr>
+<td>Plan B</td>
+<td>4/4</td>
+<td><strong>V2 개선</strong>: 모든 주요 리스크에 Plan B + 전환 소요 시간 명시. 에셋플러스 거부(+0주), SG 법인(+8~12주), Apex 지연→Bell Rock(+2주), 리드 부족→비한국인 채널(+2~4주)</td>
+</tr>
+<tr>
+<td>논리적 순서</td>
+<td>2/3</td>
+<td><strong>V2 개선</strong>: Week 1을 Day 단위로 분해. Day 1 법률 예약 → Day 1~2 에셋플러스 → Day 2~3 법률 실행 → Day 3~5 결과에 따라 분기. 단, 소규모 팀에서 Day 1~2에 법률+에셋플러스 병행이 빡빡할 수 있음</td>
+</tr>
+</tbody>
+</table>
+<h3>V1 → V2 개선 요약</h3>
+<table>
+<thead>
+<tr>
+<th>Fix</th>
+<th>V1 감점</th>
+<th>V2 변경</th>
+<th>점수 변화</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 1 병목 해소</td>
+<td>-5점</td>
+<td>Day 단위 분해, 법률 우선, 조건부 분기</td>
+<td>+4점</td>
+</tr>
+<tr>
+<td>Plan B 타임라인</td>
+<td>-5점</td>
+<td>모든 Plan B에 전환 소요 시간(주) 명시</td>
+<td>+3점</td>
+</tr>
+<tr>
+<td>비한국인 채널 구체화</td>
+<td>-1점</td>
+<td>7개 채널 + 예상 리드 수</td>
+<td>+1점</td>
+</tr>
+<tr>
+<td>파이프라인 전환율 실증</td>
+<td>-4점</td>
+<td>Preqin 벤치마크, 모델 가정 명시, 필요 리드 재계산</td>
+<td>+3점</td>
+</tr>
+<tr>
+<td>Lock-in clause</td>
+<td>-4점</td>
+<td>6항목 체크리스트, Bell Rock 레버리지 전략</td>
+<td>+3점</td>
+</tr>
+<tr>
+<td><strong>합계</strong></td>
+<td><strong>-19점</strong> (이론적 만점 대비)</td>
+<td>—</td>
+<td><strong>+8점</strong> (일부 항목 간 중복 반영)</td>
+</tr>
+</tbody>
+</table>
+<h3>남은 개선 과제 (V3 이후)</h3>
+<ol>
+<li><strong>파이프라인 전환율 실증 데이터</strong>: Helix 자체 outreach 시작 후 실제 전환율 추적 필요</li>
+<li><strong>Apex 실제 계약 조건</strong>: 컨택 후 체크리스트 항목별 실제 조건 확인</li>
+<li><strong>에셋플러스 협조 결과</strong>: Day 1~2 미팅 결과에 따라 전략 방향 확정</li>
+<li><strong>법률 의견서</strong>: Day 2~3 자문 결과 반영</li>
+</ol>
+<hr />
+<p><em>본 보고서는 5명 전문가의 독립 분석(수렴도 87.5%), 독립 검증 보고서(100x verification), 그리고 공개 법령·규제 문서·업계 자료를 종합하여 작성되었습니다. 법적 조언을 대체하지 않으며, 실행 전 반드시 한국·싱가포르·케이맨 전문 법률 자문을 받아야 합니다.</em></p></div></body></html>

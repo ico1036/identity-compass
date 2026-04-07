@@ -1,0 +1,87 @@
+{
+  "SPY": {
+    "asset_class": "Equity",
+    "region": "US",
+    "sector": "Large Cap"
+  },
+  "QQQ": {
+    "asset_class": "Equity",
+    "region": "US",
+    "sector": "Tech/Growth"
+  },
+  "IWM": {
+    "asset_class": "Equity",
+    "region": "US",
+    "sector": "Small Cap"
+  },
+  "EFA": {
+    "asset_class": "Equity",
+    "region": "Developed ex-US",
+    "sector": "Broad"
+  },
+  "VEA": {
+    "asset_class": "Equity",
+    "region": "Developed ex-US",
+    "sector": "Broad"
+  },
+  "VWO": {
+    "asset_class": "Equity",
+    "region": "Emerging",
+    "sector": "Broad"
+  },
+  "EEM": {
+    "asset_class": "Equity",
+    "region": "Emerging",
+    "sector": "Broad"
+  },
+  "TLT": {
+    "asset_class": "Fixed Income",
+    "region": "US",
+    "sector": "Long-Term Treasury"
+  },
+  "IEF": {
+    "asset_class": "Fixed Income",
+    "region": "US",
+    "sector": "Mid-Term Treasury"
+  },
+  "SHY": {
+    "asset_class": "Fixed Income",
+    "region": "US",
+    "sector": "Short-Term Treasury"
+  },
+  "TIP": {
+    "asset_class": "Fixed Income",
+    "region": "US",
+    "sector": "TIPS"
+  },
+  "HYG": {
+    "asset_class": "Fixed Income",
+    "region": "US",
+    "sector": "High Yield"
+  },
+  "GLD": {
+    "asset_class": "Commodity",
+    "region": "Global",
+    "sector": "Gold"
+  },
+  "DBC": {
+    "asset_class": "Commodity",
+    "region": "Global",
+    "sector": "Broad Commodity"
+  },
+  "USO": {
+    "asset_class": "Commodity",
+    "region": "Global",
+    "sector": "Crude Oil"
+  },
+  "VNQ": {
+    "asset_class": "Real Estate",
+    "region": "US",
+    "sector": "REITs"
+  },
+  "UUP": {
+    "asset_class": "Currency",
+    "region": "US",
+    "sector": "Dollar Index"
+  }
+}

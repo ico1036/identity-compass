@@ -7,10 +7,10 @@ Quantitative Researcher (Ph.D. Physics) with systematic signal research and port
 ## EXPERIENCE
 ### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024
 - Built an agentic multi-agent quant research workflow for hypothesis generation, backtesting, and validation.
-- Developed diversified signal candidates and validation routines; top strategy group achieved backtested Sharpe 2.8.
+- Developed diversified signal candidates and validation routines
 - Supported research and monitoring for an AI-driven US Equity Growth mutual fund (peak AUM: $22M), contributing to +39% cumulative return and +9% alpha vs S&P 500 over 16 months.
-- Implemented factor and fundamental alpha pipeline with XGBoost, cross-sectional ranking, and mean-variance allocation.
-- Built an event-driven backtesting system with ~10x faster runs to improve iteration speed and research reliability.
+- Implemented factor and fundamental alpha pipeline with XGBoost and mean-variance allocation.
+- Built a backtesting system to improve iteration speed and research reliability.
 - Delivered dashboard tools for model governance and communication with internal and external investment stakeholders.
 
 ## EDUCATION

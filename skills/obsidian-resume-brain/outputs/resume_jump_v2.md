@@ -7,11 +7,11 @@ Quantitative Researcher (Ph.D. Physics) specializing in systematic signal resear
 ## EXPERIENCE
 ### Quantitative Researcher | Alpha Bridge (Asset Plus AM), Seoul | Jan 2024 – Dec 2024
 - Built agentic research automation for idea generation, simulation, and validation.
-- Developed uncorrelated signal candidates and quantitative evaluation routines; best validated set reached backtested Sharpe 2.8.
+- Developed uncorrelated signal candidates and quantitative evaluation routines
 - Supported live strategy research and analytics for a US equity growth mutual fund (peak AUM: $22M), contributing to +39% cumulative return and +9% alpha vs S&P 500 over 16 months.
-- Built XGBoost-based fundamental alpha models with cross-sectional ranking and feature diagnostics.
+- Built XGBoost-based fundamental alpha models with feature diagnostics.
 - Supported portfolio construction via mean-variance optimization and risk-oriented constraints.
-- Developed event-driven backtesting infrastructure, reducing runtime by ~10x for faster research iteration.
+- Developed backtesting infrastructure for faster research iteration.
 
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024

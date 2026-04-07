@@ -53,10 +53,15 @@ BASE_BACKOFF_SEC = 1.0
 LINKEDIN_KEYWORDS = [
     "quant researcher",
     "quant trader",
+    "crypto quant researcher",
+    "defi quant researcher",
+    "digital assets quant",
 ]
 GLASSDOOR_KEYWORDS = [
     "quant researcher",
     "quant trader",
+    "crypto quant researcher",
+    "defi quantitative researcher",
 ]
 
 
@@ -186,7 +191,10 @@ def fresh_enough(date_posted: str, max_age_days: int = 60) -> bool:
 
 
 def is_developer_title(title: str) -> bool:
-    return "developer" in (title or "").lower()
+    t = (title or "").lower()
+    exclude_keywords = ["developer", "engineer", "blockchain architect", "smart contract",
+                        "protocol designer", "solidity", "infrastructure"]
+    return any(kw in t for kw in exclude_keywords)
 
 
 def sort_by_recency(items: List[JobItem]) -> List[JobItem]:

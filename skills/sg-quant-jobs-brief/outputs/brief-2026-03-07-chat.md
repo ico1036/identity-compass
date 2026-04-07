@@ -1,0 +1,159 @@
+# Singapore Quant Jobs Brief
+
+Generated: 2026-03-07 18:25 
+
+## Scope
+- Sources: LinkedIn, Glassdoor only
+- Roles: Quant Researcher / Quant Trader (+ close variants)
+- Location: Singapore only
+- Min target results: 3
+- Rounds executed: 1
+
+## Diagnostics
+- === Round 1/1 ===
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+researcher&location=Singapore&start=0
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+researcher&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0
+- LinkedIn extracted 58 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+trader&location=Singapore&start=0
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+trader&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0
+- LinkedIn extracted 60 from template URL; index_count=n/a
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 1.9s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.9s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 1.9s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.8s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.2s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.3s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 1.7s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.3s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 1.4s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 3.0s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.8s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.7s)
+- Ralph-loop iter 1: 138 -> 111 (removed 27)
+- Ralph-loop iter 2: 111 -> 111 (removed 0)
+- Ralph-loop converged at iter 2.
+- Round 1 final count: 111
+- Stop condition met: 111 >= min-results 3
+
+## Last Error Reasons
+- LinkedIn|Quant Developer (Python) :: stale_date
+- LinkedIn|Quantitative Software Developer :: role_inferred_from_url_query,lower_confidence_fallback,stale_date
+- LinkedIn|Senior Quantitative Trader (Market Making) :: stale_date
+- LinkedIn|Quantitative Developer :: role_inferred_from_url_query,lower_confidence_fallback,stale_date
+- LinkedIn|Rates Quant Trader :: stale_date
+- LinkedIn|Quantitative Trader :: stale_date
+- LinkedIn|Graduate Quantitative Trader :: stale_date
+- LinkedIn|Junior Quant Trader :: stale_date
+- LinkedIn|Quant Trader (VP) :: stale_date
+- LinkedIn|Quantitative Trader Intern :: stale_date
+- LinkedIn|Quantitative Researcher :: stale_date
+- LinkedIn|Systematic Macro Commodities Quantitative Researcher (Tier 1 Hedge Fund) :: stale_date
+
+## Final Shortlist (15 roles)
+
+### 1. AVP/VP, Fixed Income and Multi Asset, Macro Quant (FX and Rates) - Portfolio Manager — GIC
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-06
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/avp-vp-fixed-income-and-multi-asset-macro-quant-fx-and-rates-portfolio-manager-at-gic-4277356331?position=42&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=P0YlJLRcxsfIUr71NIkFmA%3D%3D
+
+### 2. Quant V&S Crude and Products — ExxonMobil
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-06
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-v-s-crude-and-products-at-exxonmobil-4379719167?position=50&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=U2z%2B66M3tiMgulrfnPRmbQ%3D%3D
+
+### 3. Research Fellow (Biophysical Cell Analysis and Sorting Instrumentation) — Nanyang Technological University Singapore
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-06
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/research-fellow-biophysical-cell-analysis-and-sorting-instrumentation-at-nanyang-technological-university-singapore-4371682860?position=55&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=uS0FxSAo9dTAXZ0KXGLqfQ%3D%3D
+
+### 4. Junior Quant Trader (2026 Start, Training in Chicago) — Akuna Capital
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-06
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/junior-quant-trader-2026-start-training-in-chicago-at-akuna-capital-4379794996?position=37&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=sc6yMWayfrop1Tb2bi3y9Q%3D%3D
+
+### 5. Decentralized Exchange - Senior IC Risk Quant — Hyphen Connect
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-06
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/decentralized-exchange-senior-ic-risk-quant-at-hyphen-connect-4371143694?position=58&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=ylZJoezrIPrE1KO%2FBZ4QIg%3D%3D
+
+### 6. Intern, Quant Dev — QCP
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-05
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/intern-quant-dev-at-qcp-4370936935?position=23&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=u3HMh21xExLkIyjE85wtsw%3D%3D
+
+### 7. Research and Analytics Intern — AnyMind Group
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-05
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/research-and-analytics-intern-at-anymind-group-4378681896?position=46&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=M%2Bng3ojQq97UhLb1%2F8PxjQ%3D%3D
+
+### 8. SSG Jobs-Skills Research & Analytics Traineeship [GRIT@Gov] — SkillsFuture SG
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-05
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/ssg-jobs-skills-research-analytics-traineeship-grit%40gov-at-skillsfuture-sg-4373419281?position=48&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=HzbZTjbasZrgrSry0PxnjA%3D%3D
+
+### 9. Quantitative Trader — Fionics
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-05
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-fionics-4380435892?position=5&amp;pageNum=0&amp;refId=ETE9%2F4DxFafSrMZBxuE7%2BA%3D%3D&amp;trackingId=3DKffpjamHjzg3DmW2C7XQ%3D%3D
+
+### 10. Quantitative Trader — Fionics
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-05
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-fionics-4380435892?position=5&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=5nc9tmwdR7x%2ByGgevbJY3w%3D%3D
+
+### 11. Quantitative Trader — Akuna Capital
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-05
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-akuna-capital-4198709580?position=11&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=JO%2BTyZZP7uWgwvgJh%2FJnXw%3D%3D
+
+### 12. Senior Quant Trader — Crypto.com
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-05
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/senior-quant-trader-at-crypto-com-3925425422?position=28&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=ZIoA8iqULFhXxR0eKRGeag%3D%3D
+
+### 13. Quantitative Trader — BlockTech
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-04
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-blocktech-4379039184?position=31&amp;pageNum=0&amp;refId=zTQRJqNNwFlNHQ9In77ZsQ%3D%3D&amp;trackingId=HC4aZDAL4r0YaRybg983GA%3D%3D
+
+### 14. Quant Trading Strategies CPF — ExxonMobil
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-03
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-trading-strategies-cpf-at-exxonmobil-4379537827?position=35&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=%2BxkhOoDsc1gUnkhtMV81rw%3D%3D
+
+### 15. Quant Equities Portfolio Manager — Paragon Alpha - Hedge Fund Talent Business
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-03
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-equities-portfolio-manager-at-paragon-alpha-hedge-fund-talent-business-4335356228?position=37&amp;pageNum=0&amp;refId=P2BFnSQ8yxm5vlUfnWoKLg%3D%3D&amp;trackingId=GNnPfmw0mmDZMJQD6RxXjA%3D%3D

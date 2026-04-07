@@ -1,0 +1,7 @@
+/Users/ryan/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Scraping 서울 from 2023/07 to 2026/03
+  2023/07 ... 819 rows
+  2023/08 ... 966 rows
+  2023/09 ... 895 rows
+  2023/10 ... 

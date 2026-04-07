@@ -16,7 +16,6 @@ AI-native Quant Researcher (Ph.D. in Physics) specializing in multi-agent AI sys
 - Live Operations & Execution: Operated the live strategy over a 16-month period, delivering +43.54% versus +35.90% for the benchmark (+7.64%p), with hands-on ownership of the end-to-end pipeline from model research to live execution support.
 
 #### Research Infrastructure
-- Built an event-driven backtesting framework that improved research runtime by ~10x and systematically reduced look-ahead bias risk in legacy processes.
 
 ## EDUCATION
 - Ph.D. in Physics | Kyungpook National University | 2019 – 2024

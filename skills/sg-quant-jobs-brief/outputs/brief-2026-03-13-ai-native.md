@@ -1,0 +1,269 @@
+# Singapore Quant Jobs Brief
+
+Generated: 2026-03-13 08:14 
+
+## Scope
+- Sources: LinkedIn, Glassdoor only
+- Roles: Quant Researcher / Quant Trader (+ close variants)
+- Location: Singapore only
+- Min target results: 5
+- Rounds executed: 1
+
+## Diagnostics
+- === Round 1/4 ===
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+researcher&location=Singapore&start=0
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+researcher&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0
+- LinkedIn extracted 58 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+researcher&location=Singapore&start=25
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+researcher&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=1&start=25
+- LinkedIn extracted 58 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+researcher&location=Singapore&start=50
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+researcher&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=2&start=50
+- LinkedIn extracted 58 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+trader&location=Singapore&start=0
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+trader&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0
+- LinkedIn extracted 60 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+trader&location=Singapore&start=25
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+trader&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=1&start=25
+- LinkedIn extracted 60 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+trader&location=Singapore&start=50
+- LinkedIn extracted 10 from template URL; index_count=n/a
+- GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+trader&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=2&start=50
+- LinkedIn extracted 60 from template URL; index_count=n/a
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 1.3s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.0s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.7s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.2s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.5s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP2.htm :: HTTP Error 403: Forbidden (sleep 1.3s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP2.htm :: HTTP Error 403: Forbidden (sleep 2.8s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=2 :: HTTP Error 403: Forbidden (sleep 1.4s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=2 :: HTTP Error 403: Forbidden (sleep 2.5s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=2 :: HTTP Error 403: Forbidden (sleep 1.5s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=2 :: HTTP Error 403: Forbidden (sleep 2.8s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP3.htm :: HTTP Error 403: Forbidden (sleep 1.5s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP3.htm :: HTTP Error 403: Forbidden (sleep 2.3s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=3 :: HTTP Error 403: Forbidden (sleep 1.5s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=3 :: HTTP Error 403: Forbidden (sleep 2.3s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=3 :: HTTP Error 403: Forbidden (sleep 1.9s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=3 :: HTTP Error 403: Forbidden (sleep 2.4s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 1.3s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.0s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.4s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.3s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP2.htm :: HTTP Error 403: Forbidden (sleep 1.5s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP2.htm :: HTTP Error 403: Forbidden (sleep 2.4s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=2 :: HTTP Error 403: Forbidden (sleep 1.4s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=2 :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=2 :: HTTP Error 403: Forbidden (sleep 1.8s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=2 :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP3.htm :: HTTP Error 403: Forbidden (sleep 1.8s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP3.htm :: HTTP Error 403: Forbidden (sleep 2.9s)
+- GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=3 :: HTTP Error 403: Forbidden (sleep 1.4s)
+- GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=3 :: HTTP Error 403: Forbidden (sleep 2.6s)
+- GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=3 :: HTTP Error 403: Forbidden (sleep 1.5s)
+- GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=3 :: HTTP Error 403: Forbidden (sleep 2.5s)
+- Ralph-loop iter 1: 414 -> 351 (removed 63)
+- Ralph-loop iter 2: 351 -> 351 (removed 0)
+- Ralph-loop converged at iter 2.
+- Round 1 final count: 351
+- Stop condition met: 351 >= min-results 5
+
+## Last Error Reasons
+- LinkedIn|Quantitative Developer - AI Implementation :: role_inferred_from_url_query,lower_confidence_fallback,stale_date
+- LinkedIn|Quantitative Software Developer :: role_inferred_from_url_query,lower_confidence_fallback,stale_date
+- LinkedIn|Quantitative Trader :: stale_date
+- LinkedIn|Junior Quant Trader :: stale_date
+- LinkedIn|Quant Trader (VP) :: stale_date
+- LinkedIn|Quantitative Trader Intern :: stale_date
+- LinkedIn|Quant Developer (Python) :: stale_date
+- LinkedIn|Graduate Quantitative Trader :: stale_date
+- fetch_failed: https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=3 :: HTTP Error 403: Forbidden
+- fetch_failed: https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=3 :: HTTP Error 403: Forbidden
+- fetch_failed: https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP3.htm :: HTTP Error 403: Forbidden
+- fetch_failed: https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=2 :: HTTP Error 403: Forbidden
+
+## Final Shortlist (25 roles)
+
+### 1. Entry-Level Quantitative Researcher — Point72
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/entry-level-quantitative-researcher-at-point72-4001229970?position=3&amp;pageNum=0&amp;refId=%2F%2Bmw7zu6a%2FBkLW2DUoiZ0A%3D%3D&amp;trackingId=Fh1uyUrFtwhB7RXB7q21fw%3D%3D
+
+### 2. Entry-Level Quantitative Researcher — Point72
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/entry-level-quantitative-researcher-at-point72-4001229970?position=3&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=mNdCyDY742qS7Rjga2BDbg%3D%3D
+
+### 3. Quantitative Researcher, Equity — Millennium
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-equity-at-millennium-4229954545?position=18&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=ViDGfueF0fD6bK6ou2F4vA%3D%3D
+
+### 4. Quant Engineer — Partners Group
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-engineer-at-partners-group-4379150735?position=39&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=Fvx%2BN4S0pho148rXIEy49A%3D%3D
+
+### 5. SSG Jobs-Skills Research & Analytics Traineeship [GRIT@Gov] — SkillsFuture SG
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/ssg-jobs-skills-research-analytics-traineeship-grit%40gov-at-skillsfuture-sg-4373419281?position=55&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=ILFYebeV6Kjr60HXd4I1WA%3D%3D
+
+### 6. Entry-Level Quantitative Researcher — Point72
+- Source: LinkedIn
+- Location: Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/entry-level-quantitative-researcher-at-point72-4001229970?position=3&amp;pageNum=0&amp;refId=KtnCp6SPtffK%2B8ZmPSLJyw%3D%3D&amp;trackingId=YcaY2gP5ONK%2BIODN575YYg%3D%3D
+
+### 7. Quantitative Researcher, Equity — Millennium
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-equity-at-millennium-4229954545?position=18&amp;pageNum=0&amp;refId=KtnCp6SPtffK%2B8ZmPSLJyw%3D%3D&amp;trackingId=PuwT517o%2Fm0mzHPVixcVSw%3D%3D
+
+### 8. Quant Engineer — Partners Group
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-engineer-at-partners-group-4379150735?position=39&amp;pageNum=0&amp;refId=KtnCp6SPtffK%2B8ZmPSLJyw%3D%3D&amp;trackingId=VhDgo1nvg0hQvOkGsmBNuw%3D%3D
+
+### 9. SSG Jobs-Skills Research & Analytics Traineeship [GRIT@Gov] — SkillsFuture SG
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/ssg-jobs-skills-research-analytics-traineeship-grit%40gov-at-skillsfuture-sg-4373419281?position=55&amp;pageNum=0&amp;refId=KtnCp6SPtffK%2B8ZmPSLJyw%3D%3D&amp;trackingId=4IrLXyJHd2UU9qO3xoRUnA%3D%3D
+
+### 10. SSG Jobs-Skills Research & Analytics Traineeship [GRIT@Gov] — SkillsFuture SG
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/ssg-jobs-skills-research-analytics-traineeship-grit%40gov-at-skillsfuture-sg-4373419281?position=7&amp;pageNum=5&amp;refId=PjznHRqHQS74FgWiNhuRmg%3D%3D&amp;trackingId=ZXu20w0JgVasStqMuBKSiA%3D%3D
+
+### 11. Quantitative Trader — Vega Solutions
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-vega-solutions-4377906995?position=7&amp;pageNum=0&amp;refId=N6rF5mc7f9kZricUGBdP4A%3D%3D&amp;trackingId=KCeU5w04FxDLI82xhrD9oQ%3D%3D
+
+### 12. Quantitative Trader — Vega Solutions
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-vega-solutions-4377906995?position=7&amp;pageNum=0&amp;refId=D7wvKp6udc1T%2FmvteJzPAA%3D%3D&amp;trackingId=PcxIrqrrE7qZT9MhPq%2BGhA%3D%3D
+
+### 13. Quantitative Trader — Vega Solutions
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-vega-solutions-4377906995?position=7&amp;pageNum=0&amp;refId=pai34OEjvCmpoJQsZBu1xw%3D%3D&amp;trackingId=mhc983x9xKxSb2urtP8JmA%3D%3D
+
+### 14. Quantitative Trader — Vega Solutions
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-13
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-at-vega-solutions-4377906995?position=7&amp;pageNum=0&amp;refId=RUY09gS%2FwQxNFSr1%2BNDbEQ%3D%3D&amp;trackingId=VZc%2FXBSCd6c42Cr%2FvuqfGw%3D%3D
+
+### 15. Quantitative Researcher — BlockTech
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-at-blocktech-4375401123?position=44&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=DkcdvNJVKo%2B85Xsui7219g%3D%3D
+
+### 16. Quantitative Researcher — BlockTech
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-at-blocktech-4375401123?position=44&amp;pageNum=0&amp;refId=KtnCp6SPtffK%2B8ZmPSLJyw%3D%3D&amp;trackingId=cPNCnq6GwosNquDUlfclRw%3D%3D
+
+### 17. Quantitative Analyst (Options) — Crypto.com
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 0.65
+- Link: https://sg.linkedin.com/jobs/view/quantitative-analyst-options-at-crypto-com-4382752904?position=2&amp;pageNum=0&amp;refId=ODpJh3SHgOfgbOXRJoNJ3w%3D%3D&amp;trackingId=kHpJb48Xq7tk0Vpvcqlq4A%3D%3D
+
+### 18. Quant V&S Crude and Products — ExxonMobil
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-v-s-crude-and-products-at-exxonmobil-4379719167?position=54&amp;pageNum=0&amp;refId=ODpJh3SHgOfgbOXRJoNJ3w%3D%3D&amp;trackingId=yWX0Yd0rh%2FCVPBrISPJS7w%3D%3D
+
+### 19. Quant Trader (Arbitrage & Market Making) — Goldden Valley Capital Management Pte. Ltd.
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-trader-arbitrage-market-making-at-goldden-valley-capital-management-pte-ltd-4383540379?position=12&amp;pageNum=0&amp;refId=D7wvKp6udc1T%2FmvteJzPAA%3D%3D&amp;trackingId=RU234YzOhPc7R6M61ZUYmA%3D%3D
+
+### 20. Quant Trader (Arbitrage & Market Making) — Goldden Valley Capital Management Pte. Ltd.
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-trader-arbitrage-market-making-at-goldden-valley-capital-management-pte-ltd-4383540379?position=12&amp;pageNum=0&amp;refId=pai34OEjvCmpoJQsZBu1xw%3D%3D&amp;trackingId=qAvHuGa85pnqHjMW0LMrjQ%3D%3D
+
+### 21. Quant Trader (Arbitrage & Market Making) — Goldden Valley Capital Management Pte. Ltd.
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-12
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quant-trader-arbitrage-market-making-at-goldden-valley-capital-management-pte-ltd-4383540379?position=12&amp;pageNum=0&amp;refId=RUY09gS%2FwQxNFSr1%2BNDbEQ%3D%3D&amp;trackingId=k0LMc9rsXSTlKdth2BmJ2A%3D%3D
+
+### 22. Quantitative Researcher — Anson McCade
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-11
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-at-anson-mccade-4381291869?position=8&amp;pageNum=0&amp;refId=%2F%2Bmw7zu6a%2FBkLW2DUoiZ0A%3D%3D&amp;trackingId=h5Ndk0rkdEoE4Fg%2B2QDAaA%3D%3D
+
+### 23. Quantitative Researcher — Anson McCade
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-11
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-researcher-at-anson-mccade-4381291869?position=8&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=Yw7URzYb8soTQw%2BgjhVwCg%3D%3D
+
+### 24. Quantitative Trader & RV Analyst (Rates & FX) — Onyx Alpha Partners
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-11
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-rv-analyst-rates-fx-at-onyx-alpha-partners-4374305620?position=32&amp;pageNum=0&amp;refId=D0aEFH0%2BilxiE%2B50UWjt9w%3D%3D&amp;trackingId=OoF3ugh1DFkKAkUQHIsNwA%3D%3D
+
+### 25. Quantitative Trader & RV Analyst (Rates & FX) — Onyx Alpha Partners
+- Source: LinkedIn
+- Location: Singapore, Singapore
+- Date: 2026-03-11
+- Confidence: 1.0
+- Link: https://sg.linkedin.com/jobs/view/quantitative-trader-rv-analyst-rates-fx-at-onyx-alpha-partners-4374305620?position=9&amp;pageNum=2&amp;refId=f5MEMBkkMkw0wF%2BtlwARgg%3D%3D&amp;trackingId=NQw3c9t6nSFq%2BdiBFmrq5g%3D%3D

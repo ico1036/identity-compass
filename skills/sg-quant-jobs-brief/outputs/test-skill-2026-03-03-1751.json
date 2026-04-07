@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "generated_at": "2026-03-03T17:51:50.070917",
+    "min_results": 1,
+    "max_rounds": 1,
+    "rounds_done": 1,
+    "final_count": 10
+  },
+  "diagnostics": [
+    "=== Round 1/1 ===",
+    "GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+researcher&location=Singapore&start=0",
+    "LinkedIn extracted 9 from template URL; index_count=n/a",
+    "GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+researcher&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0",
+    "LinkedIn extracted 60 from template URL; index_count=n/a",
+    "GET ok [1/2] https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=quant+trader&location=Singapore&start=0",
+    "LinkedIn extracted 10 from template URL; index_count=n/a",
+    "GET ok [1/2] https://www.linkedin.com/jobs/search/?keywords=quant+trader&location=Singapore&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=0",
+    "LinkedIn extracted 60 from template URL; index_count=n/a",
+    "GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 1.4s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.4s)",
+    "GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 1.7s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.9s)",
+    "GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.3s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.9s)",
+    "GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.0s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden (sleep 2.7s)",
+    "GET fail [1/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 1.5s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden (sleep 2.8s)",
+    "GET fail [1/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 1.6s)",
+    "GET fail [2/2] https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden (sleep 2.6s)",
+    "Ralph-loop iter 1: 139 -> 115 (removed 24)",
+    "Ralph-loop iter 2: 115 -> 115 (removed 0)",
+    "Ralph-loop converged at iter 2.",
+    "Round 1 final count: 115",
+    "Stop condition met: 115 >= min-results 1"
+  ],
+  "last_error_reasons": [
+    "fetch_failed: https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden",
+    "fetch_failed: https://www.glassdoor.com/Job/singapore-quant+researcher-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden",
+    "fetch_failed: https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+researcher&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden",
+    "fetch_failed: https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217_KO10,40_IP1.htm :: HTTP Error 403: Forbidden",
+    "fetch_failed: https://www.glassdoor.com/Job/singapore-quant+trader-jobs-SRCH_IL.0,9_IN217.htm?fromAge=7&pgc=1 :: HTTP Error 403: Forbidden",
+    "fetch_failed: https://www.glassdoor.com/Job/jobs.htm?sc.keyword=quant+trader&locT=C&locId=114&locKeyword=Singapore&p=1 :: HTTP Error 403: Forbidden",
+    "LinkedIn|Quantitative Analyst :: role_inferred_from_url_query,lower_confidence_fallback,stale_date",
+    "LinkedIn|Quantitative Researcher :: stale_date",
+    "LinkedIn|Quantitative Analyst :: role_inferred_from_url_query,lower_confidence_fallback,stale_date",
+    "LinkedIn|Quantitative Researcher :: stale_date",
+    "LinkedIn|Quantitative Researcher :: stale_date",
+    "LinkedIn|Quantitative Researcher (HFT Alpha Generation) :: stale_date",
+    "LinkedIn|Quantitative Researcher, Equity :: stale_date",
+    "LinkedIn|Quantitative Researcher :: stale_date",
+    "LinkedIn|Systematic Macro Commodities Quantitative Researcher (Tier 1 Hedge Fund) :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Quantitative Trader Intern :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Junior Quant Trader :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Quantitative Trader Intern :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Junior Quant Trader :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Quantitative Trader :: stale_date",
+    "LinkedIn|Rates Quant Trader :: stale_date",
+    "LinkedIn|Quantitative Developer :: role_inferred_from_url_query,lower_confidence_fallback,stale_date",
+    "LinkedIn|Senior Quantitative Trader (Market Making) :: stale_date",
+    "LinkedIn|Quantitative Software Developer :: role_inferred_from_url_query,lower_confidence_fallback,stale_date",
+    "LinkedIn|Quant Developer (Python) :: stale_date"
+  ],
+  "items": [
+    {
+      "source": "LinkedIn",
+      "title": "Quant Engineer",
+      "company": "Partners Group",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-03",
+      "link": "https://sg.linkedin.com/jobs/view/quant-engineer-at-partners-group-4379150735?position=44&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=5avvQX2Ga4%2FFj%2BFK6%2Ffopg%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "2026 Markets Quantitative Research Program - Summer Associate - Singapore",
+      "company": "JPMorganChase",
+      "location": "Singapore",
+      "date_posted": "2026-03-03",
+      "link": "https://sg.linkedin.com/jobs/view/2026-markets-quantitative-research-program-summer-associate-singapore-at-jpmorganchase-4334347000?position=45&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=I%2B8TAcDvEjiaZPzBSNzmQw%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Quant V&S Crude and Products",
+      "company": "ExxonMobil",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-03",
+      "link": "https://sg.linkedin.com/jobs/view/quant-v-s-crude-and-products-at-exxonmobil-4379719167?position=53&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=W%2FbWubAZLzMr39jGNLA12A%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Senior Crypto Quant Trader",
+      "company": "TMGM",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-03",
+      "link": "https://sg.linkedin.com/jobs/view/senior-crypto-quant-trader-at-tmgm-4372180756?position=22&amp;pageNum=0&amp;refId=Rt7poiAnP5bjCGPCIR5EMQ%3D%3D&amp;trackingId=%2Fs6z3Ldx78EpCQBYbdZzSg%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Quantitative Analyst",
+      "company": "Anson McCade",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-02",
+      "link": "https://sg.linkedin.com/jobs/view/quantitative-analyst-at-anson-mccade-4359883221?position=13&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=1Ye%2BWdgmB0Y5UZW6T3cLKA%3D%3D",
+      "confidence": 0.65,
+      "reasons": [
+        "role_inferred_from_url_query",
+        "lower_confidence_fallback"
+      ]
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Senior Quant Trader",
+      "company": "Crypto.com",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-02",
+      "link": "https://sg.linkedin.com/jobs/view/senior-quant-trader-at-crypto-com-3925425422?position=29&amp;pageNum=0&amp;refId=Rt7poiAnP5bjCGPCIR5EMQ%3D%3D&amp;trackingId=iHsOjIMtXFRHuUWtSZTU5Q%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Quantitative Trader",
+      "company": "BlockTech",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-03-02",
+      "link": "https://sg.linkedin.com/jobs/view/quantitative-trader-at-blocktech-4379039184?position=30&amp;pageNum=0&amp;refId=Rt7poiAnP5bjCGPCIR5EMQ%3D%3D&amp;trackingId=bQWHeDBdktcSpcafMAxo5g%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Quantitative Alpha Researcher",
+      "company": "Point72",
+      "location": "Singapore",
+      "date_posted": "2026-03-01",
+      "link": "https://sg.linkedin.com/jobs/view/quantitative-alpha-researcher-at-point72-3674784776?position=26&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=7YwGwWd7mTYGF9L27Jpigw%3D%3D",
+      "confidence": 0.65,
+      "reasons": [
+        "role_inferred_from_url_query",
+        "lower_confidence_fallback"
+      ]
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Quantitative Researcher",
+      "company": "Anson McCade",
+      "location": "Singapore, Singapore",
+      "date_posted": "2026-02-28",
+      "link": "https://sg.linkedin.com/jobs/view/quantitative-researcher-at-anson-mccade-4360533447?position=11&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=XtFnhcFpQGczrsqYEtJKvQ%3D%3D",
+      "confidence": 1.0,
+      "reasons": []
+    },
+    {
+      "source": "LinkedIn",
+      "title": "Research and Analytics Intern",
+      "company": "AnyMind Group",
+      "location": "Singapore",
+      "date_posted": "2026-02-28",
+      "link": "https://sg.linkedin.com/jobs/view/research-and-analytics-intern-at-anymind-group-4378681896?position=49&amp;pageNum=0&amp;refId=Y0EoXvDWwm6jt80GRd5qDw%3D%3D&amp;trackingId=2hoOxiXoNS%2FpSwgOxbkwTQ%3D%3D",
+      "confidence": 0.65,
+      "reasons": [
+        "role_inferred_from_url_query",
+        "lower_confidence_fallback"
+      ]
+    }
+  ]
+}
