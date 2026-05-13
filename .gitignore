@@ -1,0 +1,47 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets / local config
+.env
+.env.*
+*.pem
+*.key
+*_secret*
+*secret*
+*token*
+*credential*
+
+# Identity Compass user/private outputs
+obsidian-vault/
+compass-vault/
+memory/
+MEMORY.md
+USER.md
+TOOLS.md
+AGENTS.md
+SOUL.md
+HEARTBEAT.md
+.openclaw/
+.clawhub/
+state/
+outputs/
+tmp/
+
+# Generated compass runtime data
+scripts/compass_data.json
+scripts/vectors.json
+scripts/magnetization.json
+
+# Python/cache
+__pycache__/
+*.py[cod]
+.venv/
+
+# Large/private documents
+*.docx
+*.pptx
+*.xlsx
+*.pdf
+*.odt
